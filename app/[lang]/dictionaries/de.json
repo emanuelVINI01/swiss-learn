@@ -1,0 +1,110 @@
+{
+  "nav": {
+    "home": "Startseite",
+    "signin": "Anmelden",
+    "dashboard": "Dashboard",
+    "questions": "Üben",
+    "signout": "Abmelden"
+  },
+  "hero": {
+    "badge": "Schweizerdeutsch lernen",
+    "title": "Sprechen wie ein",
+    "titleAccent": "echter Schweizer",
+    "subtitle": "Meistere Schweizerdeutsch mit interaktiven Übungen, echtem Wortschatz und Spaced Repetition. Von Begrüßungen bis zu Alltagsgesprächen.",
+    "cta": "Kostenlos starten",
+    "ctaSignin": "Mit GitHub anmelden",
+    "stats": {
+      "words": "Schweizer Wörter",
+      "accuracy": "Genauigkeit",
+      "learners": "Lernende"
+    },
+    "community": "Lernende üben bereits aus"
+  },
+  "features": {
+    "title": "Alles, was Sie brauchen,",
+    "titleAccent": "um effektiv zu lernen",
+    "quiz": {
+      "title": "Interaktive Quizze",
+      "desc": "Multiple-Choice-Fragen mit echtem Schweizerdeutsch. Sofortiges Feedback auf jede Antwort."
+    },
+    "progress": {
+      "title": "Fortschritt verfolgen",
+      "desc": "XP-Punkte, tägliche Streaks und Genauigkeitsstatistiken. Beobachten Sie, wie Ihr Schweizerdeutsch wächst."
+    },
+    "i18n": {
+      "title": "Mehrsprachig",
+      "desc": "Oberfläche auf Englisch, Portugiesisch und Deutsch verfügbar. Lernen Sie in Ihrer Komfortsprache."
+    }
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "welcome": "Willkommen zurück",
+    "chooseLanguage": "Lernsprache",
+    "xp": "XP",
+    "streak": "Tage Streak",
+    "accuracy": "Genauigkeit",
+    "totalQuizzes": "Quizze gesamt",
+    "startPractice": "Übung starten",
+    "stats": "Ihre Statistiken",
+    "noProgress": "Noch kein Fortschritt. Fangen Sie an zu üben!",
+    "swissGerman": "Schweizerdeutsch"
+  },
+  "questions": {
+    "title": "Üben",
+    "choose": "Was bedeutet das?",
+    "correct": "Richtig!",
+    "wrong": "Falsch!",
+    "meaning": "Bedeutung",
+    "next": "Weiter",
+    "finish": "Beenden",
+    "score": "Ergebnis",
+    "of": "von",
+    "results": "Quizergebnis",
+    "playAgain": "Nochmal spielen",
+    "backToDashboard": "Zurück zum Dashboard",
+    "loading": "Laden...",
+    "showCategory": "Kategorie anzeigen",
+    "hideCategory": "Kategorie ausblenden"
+  },
+  "signin": {
+    "title": "Anmelden bei",
+    "titleAccent": "SwissLearn",
+    "subtitle": "Verfolgen Sie Ihren Fortschritt und schalten Sie alle Funktionen frei",
+    "github": "Mit GitHub anmelden",
+    "google": "Mit Google anmelden",
+    "comingSoon": "demnächst",
+    "terms": "Mit der Anmeldung stimmen Sie unseren",
+    "termsLink": "Nutzungsbedingungen"
+  },
+  "theme": {
+    "toggle": "Design umschalten",
+    "light": "Hell",
+    "dark": "Dunkel"
+  },
+  "lang": {
+    "switch": "Sprache",
+    "en": "English",
+    "pt": "Português",
+    "de": "Deutsch"
+  },
+  "demo": {
+    "livePreview": "Live-Vorschau",
+    "greeting": "Grüezi!",
+    "description": "Schweizerdeutsch ist nicht einfach nur Deutsch mit Akzent — es ist ein völlig anderer gesprochener Dialekt. Wir machen ihn zugänglich.",
+    "exampleQuestion": "Beispielfrage",
+    "options": {
+      "hello": "Guten Tag / Hallo",
+      "goodbye": "Auf Wiedersehen",
+      "thanks": "Danke",
+      "bicycle": "Fahrrad"
+    }
+  },
+  "ctaBanner": {
+    "title": "Bereit, Schweizerdeutsch zu lernen?",
+    "subtitle": "Schließen Sie sich Tausenden von Lernenden an. Melden Sie sich mit GitHub an und beginnen Sie Ihre Reise noch heute."
+  },
+  "footer": {
+    "tagline": "Schweizerdeutsch lernen, ein Wort nach dem anderen.",
+    "rights": "Alle Rechte vorbehalten."
+  }
+}

@@ -1,0 +1,110 @@
+{
+  "nav": {
+    "home": "Início",
+    "signin": "Entrar",
+    "dashboard": "Painel",
+    "questions": "Praticar",
+    "signout": "Sair"
+  },
+  "hero": {
+    "badge": "Aprenda Suíço-Alemão",
+    "title": "Fale como um",
+    "titleAccent": "suíço de verdade",
+    "subtitle": "Domine o suíço-alemão com exercícios interativos, vocabulário real e repetição espaçada. De cumprimentos a conversas do dia a dia.",
+    "cta": "Começar Grátis",
+    "ctaSignin": "Entrar com GitHub",
+    "stats": {
+      "words": "palavras suíças",
+      "accuracy": "Precisão",
+      "learners": "Aprendizes"
+    },
+    "community": "Aprendizes praticando de"
+  },
+  "features": {
+    "title": "Tudo que você precisa para",
+    "titleAccent": "aprender de verdade",
+    "quiz": {
+      "title": "Quizzes Interativos",
+      "desc": "Perguntas de múltipla escolha com vocabulário real do suíço-alemão. Feedback instantâneo em cada resposta."
+    },
+    "progress": {
+      "title": "Acompanhe o Progresso",
+      "desc": "Pontos XP, sequências diárias e estatísticas de precisão. Veja seu suíço-alemão crescer dia a dia."
+    },
+    "i18n": {
+      "title": "Multilíngue",
+      "desc": "Interface disponível em inglês, português e alemão. Aprenda no idioma em que você se sente confortável."
+    }
+  },
+  "dashboard": {
+    "title": "Painel",
+    "welcome": "Bem-vindo de volta",
+    "chooseLanguage": "Idioma de aprendizado",
+    "xp": "XP",
+    "streak": "Dias seguidos",
+    "accuracy": "Precisão",
+    "totalQuizzes": "Total de quizzes",
+    "startPractice": "Começar Prática",
+    "stats": "Suas Estatísticas",
+    "noProgress": "Nenhum progresso ainda. Comece a praticar!",
+    "swissGerman": "Suíço-Alemão"
+  },
+  "questions": {
+    "title": "Praticar",
+    "choose": "O que significa isso?",
+    "correct": "Correto!",
+    "wrong": "Errado!",
+    "meaning": "Significado",
+    "next": "Próximo",
+    "finish": "Finalizar",
+    "score": "Pontuação",
+    "of": "de",
+    "results": "Resultado do Quiz",
+    "playAgain": "Jogar Novamente",
+    "backToDashboard": "Voltar ao Painel",
+    "loading": "Carregando...",
+    "showCategory": "Mostrar categoria",
+    "hideCategory": "Ocultar categoria"
+  },
+  "signin": {
+    "title": "Entre no",
+    "titleAccent": "SwissLearn",
+    "subtitle": "Acompanhe seu progresso e desbloqueie todos os recursos",
+    "github": "Entrar com GitHub",
+    "google": "Entrar com Google",
+    "comingSoon": "em breve",
+    "terms": "Ao entrar, você concorda com nossos",
+    "termsLink": "Termos de Serviço"
+  },
+  "theme": {
+    "toggle": "Alternar tema",
+    "light": "Claro",
+    "dark": "Escuro"
+  },
+  "lang": {
+    "switch": "Idioma",
+    "en": "English",
+    "pt": "Português",
+    "de": "Deutsch"
+  },
+  "demo": {
+    "livePreview": "Prévia ao Vivo",
+    "greeting": "Grüezi!",
+    "description": "O suíço-alemão (Schweizerdeutsch) não é apenas alemão com sotaque — é um dialeto falado completamente diferente. Nós o tornamos acessível.",
+    "exampleQuestion": "Exemplo de Pergunta",
+    "options": {
+      "hello": "Bom dia / Olá",
+      "goodbye": "Adeus",
+      "thanks": "Obrigado",
+      "bicycle": "Bicicleta"
+    }
+  },
+  "ctaBanner": {
+    "title": "Pronto para aprender suíço-alemão?",
+    "subtitle": "Junte-se a milhares de estudantes. Entre com o GitHub e comece sua jornada hoje."
+  },
+  "footer": {
+    "tagline": "Aprenda suíço-alemão, uma palavra de cada vez.",
+    "rights": "Todos os direitos reservados."
+  }
+}
