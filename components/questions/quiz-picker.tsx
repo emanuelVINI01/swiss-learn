@@ -1,8 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { BookOpen, Shuffle, Play } from "lucide-react";
+import { Shuffle, Play } from "lucide-react";
 import { playHover, playClick } from "@/lib/audio";
+import { EmojiIcon } from "@/components/ui/emoji-icon";
 import type { QuizSummary } from "./types";
 
 type Props = {
@@ -40,8 +41,8 @@ export default function QuizPicker({ dict, quizzes, shufflingId, onShuffle, onPl
               className="flex flex-col rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 shadow-lg"
             >
               <div className="mb-4 flex items-center justify-between">
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--accent-muted)] text-[var(--accent)]">
-                  <BookOpen size={20} />
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--accent-muted)]">
+                  <EmojiIcon emoji="📚" size={20} />
                 </div>
                 <button
                   onMouseEnter={playHover}

@@ -2,8 +2,9 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { Trophy, RotateCcw, Home } from "lucide-react";
+import { RotateCcw, Home } from "lucide-react";
 import { playHover, playClick } from "@/lib/audio";
+import { EmojiIcon } from "@/components/ui/emoji-icon";
 import type { QuizResult } from "./types";
 
 type Props = {
@@ -32,7 +33,7 @@ export default function QuizResults({ dict, lang, result, onPlayAgain }: Props) 
             className="mb-6 flex justify-center"
           >
             <div className="flex h-20 w-20 items-center justify-center rounded-2xl bg-[var(--accent-muted)]">
-              <Trophy size={40} className="text-[var(--accent)]" />
+              <EmojiIcon emoji="🏆" size={40} />
             </div>
           </motion.div>
 
@@ -77,7 +78,7 @@ export default function QuizResults({ dict, lang, result, onPlayAgain }: Props) 
               transition={{ delay: 0.5 }}
               className="mb-5 flex items-center justify-center gap-2 rounded-xl bg-[var(--accent-muted)] p-3 text-sm font-semibold text-[var(--accent)]"
             >
-              <Trophy size={16} />
+              <EmojiIcon emoji="🏆" size={16} />
               +{result.xpGained} XP
             </motion.div>
           )}

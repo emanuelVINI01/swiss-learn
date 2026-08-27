@@ -2,7 +2,6 @@
 
 import { signIn } from "next-auth/react";
 import { motion } from "framer-motion";
-import { Shield } from "lucide-react";
 import { SiGithub, SiGoogle } from "react-icons/si";
 import Link from "next/link";
 import { useTheme } from "@/components/ui/theme-provider";
@@ -10,6 +9,7 @@ import { Sun, Moon } from "lucide-react";
 import { AnimatePresence } from "framer-motion";
 import { Logo, SwissCrossMark } from "@/components/ui/logo";
 import { MountainIllustration } from "@/components/landing/mountain-illustration";
+import { EmojiIcon } from "@/components/ui/emoji-icon";
 
 type Props = {
   dict: any;
@@ -109,7 +109,7 @@ export default function SigninPageClient({ dict, lang }: Props) {
 
             {/* Security note */}
             <div className="flex items-start gap-2.5 rounded-xl bg-[var(--accent-muted)] p-3.5">
-              <Shield size={16} className="mt-0.5 shrink-0 text-[var(--accent)]" />
+              <EmojiIcon emoji="🛡️" size={16} className="mt-0.5" />
               <p className="text-xs text-[var(--fg-muted)] leading-relaxed">
                 We only read your public profile. We never post on your behalf.
               </p>

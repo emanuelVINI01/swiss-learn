@@ -2,16 +2,14 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { type Session } from "next-auth";
-import {
-  BookOpen, ArrowRight, Zap, Star, Users
-} from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { SiGithub } from "react-icons/si";
 import Navbar from "@/components/ui/navbar";
 import { SwissCrossMark } from "@/components/ui/logo";
 import { Flag } from "@/components/ui/flag";
+import { EmojiIcon } from "@/components/ui/emoji-icon";
 import { MountainIllustration } from "@/components/landing/mountain-illustration";
 import { playHover, playClick, playSuccess, playError } from "@/lib/audio";
 
@@ -79,7 +77,7 @@ export default function LandingPage({ dict, lang, session }: Props) {
           <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
             <motion.div variants={fadeUp} className="mb-6">
               <span className="inline-flex items-center gap-2 rounded-full border border-[var(--accent-muted)] bg-[var(--accent-muted)] px-4 py-1.5 text-sm font-medium text-[var(--accent)]">
-                <Zap size={14} />
+                <EmojiIcon emoji="⚡" size={14} />
                 {d.hero.badge}
               </span>
             </motion.div>
@@ -110,15 +108,16 @@ export default function LandingPage({ dict, lang, session }: Props) {
                 </Link>
               ) : (
                 <>
-                  <button
+                  <Link
+                    href={`/${lang}/signin`}
                     onMouseEnter={playHover}
-                    onClick={() => { signIn("github"); playClick(); }}
+                    onClick={playClick}
                     className="group flex items-center gap-2 rounded-xl bg-[var(--accent)] px-6 py-3 text-base font-bold text-white hover:bg-[var(--accent-hover)] transition-all hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-[var(--accent-muted)]"
                   >
                     <SiGithub size={18} />
                     {d.hero.ctaSignin}
                     <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
-                  </button>
+                  </Link>
                   <Link
                     href={`/${lang}/signin`}
                     onMouseEnter={playHover}
@@ -163,13 +162,13 @@ export default function LandingPage({ dict, lang, session }: Props) {
             className="flex flex-wrap items-center justify-center gap-10 sm:gap-16 rounded-3xl border border-[var(--border)] bg-[var(--surface)]/70 backdrop-blur-xl p-8 shadow-2xl shadow-[var(--accent-muted)]/20"
           >
             {[
-              { icon: <BookOpen size={24} />, value: "500+", label: d.hero.stats.words },
-              { icon: <Star size={24} />, value: "98%", label: d.hero.stats.accuracy },
-              { icon: <Users size={24} />, value: "1k+", label: d.hero.stats.learners },
+              { emoji: "📚", value: "500+", label: d.hero.stats.words },
+              { emoji: "⭐", value: "98%", label: d.hero.stats.accuracy },
+              { emoji: "👥", value: "1k+", label: d.hero.stats.learners },
             ].map((stat) => (
               <div key={stat.label} className="flex flex-col items-center gap-1.5">
                 <div className="flex items-center gap-2 text-[var(--accent)]">
-                  {stat.icon}
+                  <EmojiIcon emoji={stat.emoji} size={24} />
                   <span className="text-3xl font-extrabold text-[var(--fg)]">{stat.value}</span>
                 </div>
                 <span className="text-xs font-bold text-[var(--fg-muted)] uppercase tracking-widest">
@@ -362,15 +361,16 @@ export default function LandingPage({ dict, lang, session }: Props) {
                         <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
                       </Link>
                     ) : (
-                      <button
+                      <Link
+                        href={`/${lang}/signin`}
                         onMouseEnter={playHover}
-                        onClick={() => { signIn("github"); playClick(); }}
+                        onClick={playClick}
                         className="group inline-flex items-center gap-2 rounded-xl bg-[var(--accent)] px-8 py-3.5 text-base font-bold text-white hover:bg-[var(--accent-hover)] transition-all hover:scale-[1.02] shadow-lg shadow-[var(--accent-muted)]"
                       >
                         <SiGithub size={18} />
                         {d.signin?.github || "Continue with GitHub"}
                         <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
-                      </button>
+                      </Link>
                     )}
                   </div>
                 </div>

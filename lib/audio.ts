@@ -1,5 +1,38 @@
 "use client";
 
+const MUTE_STORAGE_KEY = "sound-muted";
+
+function readStoredMute(): boolean {
+  if (typeof window === "undefined") return false;
+  return localStorage.getItem(MUTE_STORAGE_KEY) === "true";
+}
+
+let muted = readStoredMute();
+const muteListeners = new Set<() => void>();
+
+export function isMuted(): boolean {
+  return muted;
+}
+
+// SSR always renders unmuted; the real value is only known client-side.
+export function isMutedServerSnapshot(): boolean {
+  return false;
+}
+
+export function setMuted(value: boolean) {
+  muted = value;
+  if (typeof window !== "undefined") {
+    localStorage.setItem(MUTE_STORAGE_KEY, String(value));
+  }
+  muteListeners.forEach((listener) => listener());
+}
+
+// For useSyncExternalStore, so UI reflects mute state without a setState-in-effect.
+export function subscribeMuted(listener: () => void): () => void {
+  muteListeners.add(listener);
+  return () => muteListeners.delete(listener);
+}
+
 // AudioContext singleton to avoid creating multiple contexts
 let audioCtx: AudioContext | null = null;
 
@@ -16,6 +49,7 @@ function getAudioContext() {
 }
 
 export function playHover() {
+  if (muted) return;
   const ctx = getAudioContext();
   if (!ctx) return;
 
@@ -38,6 +72,7 @@ export function playHover() {
 }
 
 export function playClick() {
+  if (muted) return;
   const ctx = getAudioContext();
   if (!ctx) return;
 
@@ -60,6 +95,7 @@ export function playClick() {
 }
 
 export function playSuccess() {
+  if (muted) return;
   const ctx = getAudioContext();
   if (!ctx) return;
 
@@ -88,6 +124,7 @@ export function playSuccess() {
 }
 
 export function playError() {
+  if (muted) return;
   const ctx = getAudioContext();
   if (!ctx) return;
 

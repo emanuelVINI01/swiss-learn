@@ -202,7 +202,7 @@ body::after {
   -webkit-text-fill-color: transparent;
 }
 
-.flag-emoji {
+.flag-emoji, .emoji-icon {
   font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
   font-style: normal;
   line-height: 1;

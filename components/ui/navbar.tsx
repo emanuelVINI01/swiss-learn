@@ -3,12 +3,13 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { signIn, signOut, useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import { Sun, Moon, LogOut } from "lucide-react";
 import { useState } from "react";
 import { useTheme } from "./theme-provider";
 import { Logo } from "./logo";
 import { Flag, LOCALE_FLAG } from "./flag";
+import { SoundToggle } from "./sound-toggle";
 import { playHover, playClick } from "@/lib/audio";
 
 type NavDict = {
@@ -144,6 +145,8 @@ export default function Navbar({ lang, nav, langDict }: Props) {
               </AnimatePresence>
             </button>
 
+            <SoundToggle />
+
             {/* Auth button */}
             {session ? (
               <div className="flex items-center gap-2">
@@ -169,13 +172,14 @@ export default function Navbar({ lang, nav, langDict }: Props) {
                 </button>
               </div>
             ) : (
-              <button
+              <Link
+                href={`/${lang}/signin`}
                 onMouseEnter={playHover}
-                onClick={() => { signIn("github"); playClick(); }}
+                onClick={playClick}
                 className="rounded-lg bg-[var(--accent)] px-3 py-1.5 text-sm font-semibold text-white hover:bg-[var(--accent-hover)] transition-colors"
               >
                 {nav.signin}
-              </button>
+              </Link>
             )}
           </div>
         </div>

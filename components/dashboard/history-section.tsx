@@ -1,8 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Clock, Trophy } from "lucide-react";
+import { Clock } from "lucide-react";
 import { Flag, LOCALE_FLAG, type FlagCode } from "@/components/ui/flag";
+import { EmojiIcon } from "@/components/ui/emoji-icon";
 
 type HistoryEntry = {
   id: string;
@@ -61,7 +62,7 @@ export default function HistorySection({ dict, history }: Props) {
                 </div>
               </div>
               <div className="flex shrink-0 items-center gap-1 text-xs font-semibold text-[var(--accent)]">
-                <Trophy size={14} />
+                <EmojiIcon emoji="🏆" size={14} />
                 +{entry.xpGained} XP
               </div>
             </div>

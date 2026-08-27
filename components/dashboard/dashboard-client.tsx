@@ -3,11 +3,10 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { type User } from "next-auth";
-import {
-  Zap, Flame, Target, BookOpen, ArrowRight, Calendar, Trophy
-} from "lucide-react";
+import { BookOpen, ArrowRight, Calendar } from "lucide-react";
 import AppShell from "@/components/ui/app-shell";
 import { Flag } from "@/components/ui/flag";
+import { EmojiIcon } from "@/components/ui/emoji-icon";
 import HistorySection from "./history-section";
 
 type HistoryEntry = {
@@ -50,31 +49,27 @@ export default function DashboardClient({ dict, lang, user, progress, stats, his
 
   const statCards = [
     {
-      icon: <Zap size={22} />,
+      emoji: "⚡",
       label: dict.dashboard.xp,
       value: progress.xp,
-      color: "var(--accent)",
       bg: "var(--accent-muted)",
     },
     {
-      icon: <Flame size={22} />,
+      emoji: "🔥",
       label: dict.dashboard.streak,
       value: `${progress.streak}`,
-      color: "#f97316",
       bg: "rgba(249, 115, 22, 0.12)",
     },
     {
-      icon: <Target size={22} />,
+      emoji: "🎯",
       label: dict.dashboard.accuracy,
       value: `${stats.accuracy}%`,
-      color: "var(--success)",
       bg: "var(--success-muted)",
     },
     {
-      icon: <BookOpen size={22} />,
+      emoji: "📚",
       label: dict.dashboard.totalQuizzes,
       value: stats.totalQuizzes,
-      color: "var(--swiss-red)",
       bg: "var(--swiss-red-muted)",
     },
   ];
@@ -162,9 +157,9 @@ export default function DashboardClient({ dict, lang, user, progress, stats, his
                 >
                   <div
                     className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl"
-                    style={{ backgroundColor: card.bg, color: card.color }}
+                    style={{ backgroundColor: card.bg }}
                   >
-                    {card.icon}
+                    <EmojiIcon emoji={card.emoji} size={20} />
                   </div>
                   <p className="text-2xl font-extrabold text-[var(--fg)]">{card.value}</p>
                   <p className="text-xs text-[var(--fg-muted)] mt-0.5">{card.label}</p>
@@ -182,7 +177,7 @@ export default function DashboardClient({ dict, lang, user, progress, stats, his
           >
             <div className="mb-3 flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <Trophy size={18} className="text-[var(--warning)]" />
+                <EmojiIcon emoji="🏆" size={18} />
                 <span className="font-bold text-[var(--fg)]">Level {Math.floor(progress.xp / 100) + 1}</span>
               </div>
               <span className="text-sm text-[var(--fg-muted)]">
@@ -223,7 +218,7 @@ export default function DashboardClient({ dict, lang, user, progress, stats, his
               transition={{ delay: 0.5 }}
               className="mt-6 rounded-2xl border border-dashed border-[var(--border)] p-8 text-center"
             >
-              <BookOpen size={40} className="mx-auto mb-3 text-[var(--fg-subtle)]" />
+              <EmojiIcon emoji="📚" size={40} className="mx-auto mb-3" />
               <p className="mb-4 text-[var(--fg-muted)]">{d.noProgress}</p>
               <Link
                 href={`/${lang}/questions`}
