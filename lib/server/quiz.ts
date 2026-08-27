@@ -8,6 +8,8 @@ export type TargetLang = (typeof TARGET_LANGS)[number];
 const ACTIVE_POOL_SIZE = 3;
 const QUESTIONS_PER_QUIZ = 10;
 const POOL_CACHE_TTL_MS = 60_000;
+const XP_PER_CORRECT_ANSWER = 10;
+const HISTORY_PAGE_SIZE = 20;
 
 export function isTargetLang(value: string): value is TargetLang {
   return (TARGET_LANGS as readonly string[]).includes(value);
@@ -197,7 +199,7 @@ export async function finishQuiz(ownerId: string, quizId: string) {
   if (answeredCount < quiz.total) throw new Error("Quiz is not fully answered yet");
 
   const score = quiz.questions.filter((q) => q.correct).length;
-  const xpGained = score * 10;
+  const xpGained = score * XP_PER_CORRECT_ANSWER;
 
   await prisma.$transaction([
     prisma.quiz.update({
@@ -227,6 +229,37 @@ export async function shuffleQuiz(ownerId: string, quizId: string): Promise<Quiz
   });
 
   return listActiveQuizzes(ownerId, quiz.targetLang as TargetLang);
+}
+
+export type QuizHistoryEntry = {
+  id: string;
+  targetLang: string;
+  total: number;
+  score: number;
+  accuracy: number;
+  xpGained: number;
+  endedAt: string;
+};
+
+export async function listQuizHistory(ownerId: string): Promise<QuizHistoryEntry[]> {
+  const quizzes = await prisma.quiz.findMany({
+    where: { ownerId, status: "completed" },
+    orderBy: { endedAt: "desc" },
+    take: HISTORY_PAGE_SIZE,
+  });
+
+  return quizzes.map((q) => {
+    const score = q.score ?? 0;
+    return {
+      id: q.id,
+      targetLang: q.targetLang,
+      total: q.total,
+      score,
+      accuracy: q.total > 0 ? Math.round((score / q.total) * 100) : 0,
+      xpGained: score * XP_PER_CORRECT_ANSWER,
+      endedAt: (q.endedAt ?? q.createdAt).toISOString(),
+    };
+  });
 }
 
 export async function getQuizStats(ownerId: string) {

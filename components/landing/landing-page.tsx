@@ -6,7 +6,7 @@ import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { type Session } from "next-auth";
 import {
-  BookOpen, Brain, BarChart3, Globe2, ArrowRight, Zap, Star, Users
+  BookOpen, ArrowRight, Zap, Star, Users
 } from "lucide-react";
 import { SiGithub } from "react-icons/si";
 import Navbar from "@/components/ui/navbar";
@@ -307,7 +307,7 @@ export default function LandingPage({ dict, lang, session }: Props) {
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.97 }}
                     onMouseEnter={playHover}
-                    onClick={() => { opt.correct ? playSuccess() : playError(); }}
+                    onClick={() => { if (opt.correct) playSuccess(); else playError(); }}
                     className={`rounded-xl border px-3 py-2.5 text-left text-sm font-medium transition-all ${
                       opt.correct
                         ? "border-[var(--success)] bg-[var(--success-muted)] text-[var(--success)]"

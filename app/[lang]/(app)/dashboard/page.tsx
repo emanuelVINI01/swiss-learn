@@ -1,11 +1,14 @@
 import { getDictionary } from "@/app/[lang]/dictionaries";
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
+import { connection } from "next/server";
 import { prisma } from "@/lib/prisma";
-import { getQuizStats } from "@/lib/server/quiz";
+import { getQuizStats, listQuizHistory } from "@/lib/server/quiz";
 import DashboardClient from "@/components/dashboard/dashboard-client";
 
 export default async function DashboardPage({ params }: { params: Promise<{ lang: string }> }) {
+  // Auth must be checked fresh per request, never served from a prerendered shell.
+  await connection();
   const { lang } = await params;
   const session = await auth();
   if (!session?.user?.id) redirect(`/${lang}/signin`);
@@ -24,8 +27,11 @@ export default async function DashboardPage({ params }: { params: Promise<{ lang
     });
   }
 
-  // Fetch quiz stats
-  const { totalQuizzes, accuracy } = await getQuizStats(session.user.id);
+  // Fetch quiz stats and recent history
+  const [{ totalQuizzes, accuracy }, history] = await Promise.all([
+    getQuizStats(session.user.id),
+    listQuizHistory(session.user.id),
+  ]);
 
   return (
     <DashboardClient
@@ -38,6 +44,7 @@ export default async function DashboardPage({ params }: { params: Promise<{ lang
         lastStudy: progress.lastStudy?.toISOString() ?? null,
       }}
       stats={{ totalQuizzes, accuracy }}
+      history={history}
     />
   );
 }

@@ -4,6 +4,7 @@
     "signin": "Sign In",
     "dashboard": "Dashboard",
     "questions": "Practice",
+    "ranking": "Ranking",
     "signout": "Sign Out"
   },
   "hero": {
@@ -47,7 +48,17 @@
     "startPractice": "Start Practice",
     "stats": "Your Stats",
     "noProgress": "No progress yet. Start practicing!",
-    "swissGerman": "Swiss German"
+    "swissGerman": "Swiss German",
+    "history": "Quiz History",
+    "noHistory": "No quizzes completed yet.",
+    "ranking": "Ranking",
+    "rankingSubtitle": "See who completed the most lessons.",
+    "rankingDay": "Today",
+    "rankingWeek": "This week",
+    "rankingMonth": "This month",
+    "noRanking": "No activity yet for this period.",
+    "lessons": "lessons",
+    "you": "You"
   },
   "questions": {
     "title": "Practice",

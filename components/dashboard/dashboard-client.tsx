@@ -6,9 +6,19 @@ import { type User } from "next-auth";
 import {
   Zap, Flame, Target, BookOpen, ArrowRight, Calendar, Trophy
 } from "lucide-react";
-import Navbar from "@/components/ui/navbar";
-import { useTheme } from "@/components/ui/theme-provider";
+import AppShell from "@/components/ui/app-shell";
 import { Flag } from "@/components/ui/flag";
+import HistorySection from "./history-section";
+
+type HistoryEntry = {
+  id: string;
+  targetLang: string;
+  total: number;
+  score: number;
+  accuracy: number;
+  xpGained: number;
+  endedAt: string;
+};
 
 type Props = {
   dict: any;
@@ -23,6 +33,7 @@ type Props = {
     totalQuizzes: number;
     accuracy: number;
   };
+  history: HistoryEntry[];
 };
 
 const fadeUp = {
@@ -34,9 +45,8 @@ const fadeUp = {
   }),
 };
 
-export default function DashboardClient({ dict, lang, user, progress, stats }: Props) {
+export default function DashboardClient({ dict, lang, user, progress, stats, history }: Props) {
   const d = dict.dashboard;
-  const { theme } = useTheme();
 
   const statCards = [
     {
@@ -70,9 +80,7 @@ export default function DashboardClient({ dict, lang, user, progress, stats }: P
   ];
 
   return (
-    <div className="min-h-screen flex flex-col bg-[var(--bg)]">
-      <Navbar lang={lang} nav={dict.nav} langDict={dict.lang} />
-
+    <AppShell lang={lang} dict={dict}>
       <main className="flex-1 px-4 py-8 sm:px-6">
         <div className="mx-auto max-w-5xl">
           {/* Welcome header */}
@@ -205,6 +213,8 @@ export default function DashboardClient({ dict, lang, user, progress, stats }: P
             </motion.div>
           )}
 
+          <HistorySection dict={dict} history={history} />
+
           {/* Start practice CTA if no quizzes yet */}
           {stats.totalQuizzes === 0 && (
             <motion.div
@@ -226,6 +236,6 @@ export default function DashboardClient({ dict, lang, user, progress, stats }: P
           )}
         </div>
       </main>
-    </div>
+    </AppShell>
   );
 }

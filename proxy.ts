@@ -41,7 +41,8 @@ export const proxy = auth(async function proxy(request: any) {
   const session = request.auth;
   const isAppRoute = locales.some((locale) =>
     pathname.startsWith(`/${locale}/dashboard`) ||
-    pathname.startsWith(`/${locale}/questions`)
+    pathname.startsWith(`/${locale}/questions`) ||
+    pathname.startsWith(`/${locale}/ranking`)
   );
 
   if (isAppRoute && !session) {

@@ -4,6 +4,7 @@
     "signin": "Anmelden",
     "dashboard": "Dashboard",
     "questions": "Üben",
+    "ranking": "Rangliste",
     "signout": "Abmelden"
   },
   "hero": {
@@ -47,7 +48,17 @@
     "startPractice": "Übung starten",
     "stats": "Ihre Statistiken",
     "noProgress": "Noch kein Fortschritt. Fangen Sie an zu üben!",
-    "swissGerman": "Schweizerdeutsch"
+    "swissGerman": "Schweizerdeutsch",
+    "history": "Quiz-Verlauf",
+    "noHistory": "Noch keine Quizze abgeschlossen.",
+    "ranking": "Rangliste",
+    "rankingSubtitle": "Sehen Sie, wer die meisten Lektionen abgeschlossen hat.",
+    "rankingDay": "Heute",
+    "rankingWeek": "Diese Woche",
+    "rankingMonth": "Diesen Monat",
+    "noRanking": "Noch keine Aktivität in diesem Zeitraum.",
+    "lessons": "Lektionen",
+    "you": "Du"
   },
   "questions": {
     "title": "Üben",

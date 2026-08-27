@@ -4,6 +4,7 @@
     "signin": "Entrar",
     "dashboard": "Painel",
     "questions": "Praticar",
+    "ranking": "Ranking",
     "signout": "Sair"
   },
   "hero": {
@@ -47,7 +48,17 @@
     "startPractice": "Começar Prática",
     "stats": "Suas Estatísticas",
     "noProgress": "Nenhum progresso ainda. Comece a praticar!",
-    "swissGerman": "Suíço-Alemão"
+    "swissGerman": "Suíço-Alemão",
+    "history": "Histórico de Quizzes",
+    "noHistory": "Nenhum quiz concluído ainda.",
+    "ranking": "Ranking",
+    "rankingSubtitle": "Veja quem completou mais lições.",
+    "rankingDay": "Hoje",
+    "rankingWeek": "Esta semana",
+    "rankingMonth": "Este mês",
+    "noRanking": "Nenhuma atividade ainda neste período.",
+    "lessons": "lições",
+    "you": "Você"
   },
   "questions": {
     "title": "Praticar",

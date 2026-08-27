@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { signIn, signOut, useSession } from "next-auth/react";
-import { Sun, Moon, Menu, X } from "lucide-react";
+import { Sun, Moon, LogOut } from "lucide-react";
 import { useState } from "react";
 import { useTheme } from "./theme-provider";
 import { Logo } from "./logo";
@@ -16,6 +16,7 @@ type NavDict = {
   signin: string;
   dashboard: string;
   questions: string;
+  ranking: string;
   signout: string;
 };
 
@@ -38,7 +39,6 @@ export default function Navbar({ lang, nav, langDict }: Props) {
   const { theme, toggleTheme } = useTheme();
   const { data: session } = useSession();
   const pathname = usePathname();
-  const [menuOpen, setMenuOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
 
   function switchLang(locale: string) {
@@ -52,6 +52,7 @@ export default function Navbar({ lang, nav, langDict }: Props) {
     ? [
         { href: `/${lang}/dashboard`, label: nav.dashboard },
         { href: `/${lang}/questions`, label: nav.questions },
+        { href: `/${lang}/ranking`, label: nav.ranking },
       ]
     : [];
 
@@ -154,9 +155,17 @@ export default function Navbar({ lang, nav, langDict }: Props) {
                 <button
                   onMouseEnter={playHover}
                   onClick={() => { signOut(); playClick(); }}
-                  className="hidden text-sm font-medium text-[var(--fg-muted)] hover:text-[var(--error)] transition-colors sm:block"
+                  className="hidden text-sm font-medium text-[var(--fg-muted)] hover:text-[var(--error)] transition-colors md:block"
                 >
                   {nav.signout}
+                </button>
+                <button
+                  onMouseEnter={playHover}
+                  onClick={() => { signOut(); playClick(); }}
+                  aria-label={nav.signout}
+                  className="flex h-8 w-8 items-center justify-center rounded-lg hover:bg-[var(--error-muted)] text-[var(--fg-muted)] hover:text-[var(--error)] transition-colors md:hidden"
+                >
+                  <LogOut size={16} />
                 </button>
               </div>
             ) : (
@@ -168,55 +177,8 @@ export default function Navbar({ lang, nav, langDict }: Props) {
                 {nav.signin}
               </button>
             )}
-
-            {/* Mobile hamburger */}
-            <button
-              onMouseEnter={playHover}
-              onClick={() => { setMenuOpen((o) => !o); playClick(); }}
-              className="flex h-8 w-8 items-center justify-center rounded-lg hover:bg-[var(--surface-2)] text-[var(--fg-muted)] transition-colors md:hidden"
-            >
-              {menuOpen ? <X size={16} /> : <Menu size={16} />}
-            </button>
           </div>
         </div>
-
-        {/* Mobile menu */}
-        <AnimatePresence>
-          {menuOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.2 }}
-              className="border-t border-[var(--border)] md:hidden"
-            >
-              <div className="flex flex-col gap-1 px-4 py-3">
-                {links.map((l) => (
-                  <Link
-                    key={l.href}
-                    href={l.href}
-                    onMouseEnter={playHover}
-                    onClick={() => { setMenuOpen(false); playClick(); }}
-                    className={`rounded-lg px-3 py-2 text-sm font-medium transition-colors hover:bg-[var(--accent-muted)] ${
-                      pathname === l.href ? "text-[var(--accent)] bg-[var(--accent-muted)]" : "text-[var(--fg-muted)]"
-                    }`}
-                  >
-                    {l.label}
-                  </Link>
-                ))}
-                {session && (
-                  <button
-                    onMouseEnter={playHover}
-                    onClick={() => { signOut(); setMenuOpen(false); playClick(); }}
-                    className="rounded-lg px-3 py-2 text-sm font-medium text-left text-[var(--error)] hover:bg-[var(--error-muted)] transition-colors"
-                  >
-                    {nav.signout}
-                  </button>
-                )}
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
       </div>
     </motion.header>
   );
