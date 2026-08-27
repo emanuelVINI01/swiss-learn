@@ -76,6 +76,8 @@
     "loading": "Carregando...",
     "showCategory": "Mostrar categoria",
     "hideCategory": "Ocultar categoria",
+    "playAudio": "Ouvir pronúncia",
+    "listenPrompt": "Ouça e escolha o significado",
     "pickQuiz": "Escolha um quiz de palavras",
     "pickQuizSubtitle": "Você sempre tem 3 quizzes novos prontos. Termine um ou troque por um novo conjunto de palavras.",
     "wordQuiz": "Quiz de Palavras",

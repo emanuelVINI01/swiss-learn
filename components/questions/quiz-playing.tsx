@@ -3,7 +3,8 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, ArrowRight, CheckCircle2, XCircle, Eye } from "lucide-react";
 import { playHover, playClick } from "@/lib/audio";
-import type { QuizDetail } from "./types";
+import WordAudioButton from "./word-audio-button";
+import type { QuizDetail, PromptMode } from "./types";
 
 type Props = {
   dict: any;
@@ -12,6 +13,7 @@ type Props = {
   answering: boolean;
   finishing: boolean;
   showCategory: boolean;
+  promptMode: PromptMode;
   onBack: () => void;
   onToggleCategory: () => void;
   onSelect: (option: string) => void;
@@ -25,6 +27,7 @@ export default function QuizPlaying({
   answering,
   finishing,
   showCategory,
+  promptMode,
   onBack,
   onToggleCategory,
   onSelect,
@@ -77,14 +80,31 @@ export default function QuizPlaying({
                 {dict.dashboard.swissGerman}
               </p>
               <div className="flex flex-col items-center justify-center py-8 text-center">
-                <motion.p
-                  key={question.prompt}
-                  initial={{ scale: 0.8, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  className="text-5xl font-extrabold text-[var(--fg)] mb-2"
-                >
-                  {question.prompt}
-                </motion.p>
+                {promptMode === "audio" && question.audioUrl ? (
+                  <div className="mb-2 flex flex-col items-center gap-3">
+                    <WordAudioButton
+                      audioUrl={question.audioUrl}
+                      label={d.playAudio}
+                      autoPlay
+                      size="lg"
+                    />
+                    <p className="text-sm text-[var(--fg-muted)]">{d.listenPrompt}</p>
+                  </div>
+                ) : (
+                  <div className="mb-2 flex items-center justify-center gap-3">
+                    <motion.p
+                      key={question.prompt}
+                      initial={{ scale: 0.8, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      className="text-5xl font-extrabold text-[var(--fg)]"
+                    >
+                      {question.prompt}
+                    </motion.p>
+                    {question.audioUrl && (
+                      <WordAudioButton audioUrl={question.audioUrl} label={d.playAudio} size="sm" />
+                    )}
+                  </div>
+                )}
                 <div className="flex flex-col gap-2 items-center">
                   <button
                     onMouseEnter={playHover}

@@ -76,6 +76,8 @@
     "loading": "Loading...",
     "showCategory": "Show category",
     "hideCategory": "Hide category",
+    "playAudio": "Play pronunciation",
+    "listenPrompt": "Listen and choose the meaning",
     "pickQuiz": "Choose a word quiz",
     "pickQuizSubtitle": "You always have 3 fresh quizzes ready. Finish one or shuffle it for a new set of words.",
     "wordQuiz": "Word Quiz",

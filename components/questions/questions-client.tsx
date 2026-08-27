@@ -7,7 +7,7 @@ import QuizPicker from "./quiz-picker";
 import QuizLoading from "./quiz-loading";
 import QuizResults from "./quiz-results";
 import QuizPlaying from "./quiz-playing";
-import type { TargetLang, QuizSummary, QuizDetail, QuizResult } from "./types";
+import type { TargetLang, QuizSummary, QuizDetail, QuizResult, PromptMode } from "./types";
 
 type Props = {
   dict: any;
@@ -24,6 +24,7 @@ export default function QuestionsClient({ dict, lang, targetLang, initialQuizzes
   const [shufflingId, setShufflingId] = useState<string | null>(null);
 
   const [quiz, setQuiz] = useState<QuizDetail | null>(null);
+  const [promptModes, setPromptModes] = useState<PromptMode[]>([]);
   const [current, setCurrent] = useState(0);
   const [answering, setAnswering] = useState(false);
   const [finishing, setFinishing] = useState(false);
@@ -49,6 +50,9 @@ export default function QuestionsClient({ dict, lang, targetLang, initialQuizzes
     const detail: QuizDetail = data.quiz;
     const firstUnanswered = detail.questions.findIndex((q) => q.selected === null);
     setQuiz(detail);
+    // Each question is randomly presented as text-to-read or audio-to-listen-to,
+    // decided once per quiz load — only words with a generated clip can go audio-only.
+    setPromptModes(detail.questions.map((q) => (q.audioUrl && Math.random() < 0.5 ? "audio" : "text")));
     setCurrent(firstUnanswered === -1 ? 0 : firstUnanswered);
     setShowCategory(false);
     setView("playing");
@@ -145,6 +149,7 @@ export default function QuestionsClient({ dict, lang, targetLang, initialQuizzes
           answering={answering}
           finishing={finishing}
           showCategory={showCategory}
+          promptMode={promptModes[current] ?? "text"}
           onBack={backToQuizzes}
           onToggleCategory={() => setShowCategory((s) => !s)}
           onSelect={handleSelect}

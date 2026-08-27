@@ -84,6 +84,7 @@ model WordBase {
   targetText  String // correct translation in targetLang
   distractors String[] // 3 wrong answers in targetLang, precomputed at seed time
   category    String   @default("general")
+  audioUrl    String? // pronunciation clip for sourceText, generated offline (see scripts/generate-audio.ts)
   createdAt   DateTime @default(now())
 
   quizQuestions QuizQuestion[]

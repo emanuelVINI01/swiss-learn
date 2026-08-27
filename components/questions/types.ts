@@ -12,11 +12,15 @@ export type QuizQuestion = {
   position: number;
   prompt: string;
   category: string;
+  audioUrl: string | null;
   options: string[];
   selected: string | null;
   correct: boolean | null;
   correctAnswer: string | null;
 };
+
+// Whether a question is presented as text-to-read or audio-to-listen-to.
+export type PromptMode = "text" | "audio";
 
 export type QuizDetail = {
   id: string;

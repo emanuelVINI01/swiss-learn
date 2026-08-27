@@ -122,6 +122,7 @@ export type QuizForPlay = {
     position: number;
     prompt: string;
     category: string;
+    audioUrl: string | null;
     options: string[];
     selected: string | null;
     correct: boolean | null;
@@ -135,7 +136,7 @@ export async function getQuizForPlay(ownerId: string, quizId: string): Promise<Q
     include: {
       questions: {
         orderBy: { position: "asc" },
-        include: { wordBase: { select: { category: true } } },
+        include: { wordBase: { select: { category: true, audioUrl: true } } },
       },
     },
   });
@@ -151,6 +152,7 @@ export async function getQuizForPlay(ownerId: string, quizId: string): Promise<Q
       position: q.position,
       prompt: q.prompt,
       category: q.wordBase.category,
+      audioUrl: q.wordBase.audioUrl,
       options: q.options,
       selected: q.selected,
       correct: q.correct,
