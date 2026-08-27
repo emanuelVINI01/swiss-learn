@@ -64,7 +64,15 @@
     "backToDashboard": "Voltar ao Painel",
     "loading": "Carregando...",
     "showCategory": "Mostrar categoria",
-    "hideCategory": "Ocultar categoria"
+    "hideCategory": "Ocultar categoria",
+    "pickQuiz": "Escolha um quiz de palavras",
+    "pickQuizSubtitle": "Você sempre tem 3 quizzes novos prontos. Termine um ou troque por um novo conjunto de palavras.",
+    "wordQuiz": "Quiz de Palavras",
+    "readyToPlay": "Pronto para jogar",
+    "inProgress": "respondidas",
+    "play": "Jogar",
+    "newWords": "Novas palavras",
+    "backToQuizzes": "Voltar aos quizzes"
   },
   "signin": {
     "title": "Entre no",
@@ -86,6 +94,16 @@
     "en": "English",
     "pt": "Português",
     "de": "Deutsch"
+  },
+  "learningSection": {
+    "badge": "No Seu Ritmo",
+    "title": "Aprenda no seu próprio ritmo",
+    "description": "Nossos módulos interativos se adaptam à sua velocidade de aprendizado. Sem pressa, sem pressão — apenas progresso consistente feito para sua rotina diária."
+  },
+  "progressSection": {
+    "badge": "Acompanhe o Sucesso",
+    "title": "Celebre suas vitórias",
+    "description": "Visualize sua jornada enquanto domina novo vocabulário. Cada palavra aprendida deixa você um passo mais perto da fluência e confiança."
   },
   "demo": {
     "livePreview": "Prévia ao Vivo",

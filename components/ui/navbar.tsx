@@ -9,6 +9,7 @@ import { useState } from "react";
 import { useTheme } from "./theme-provider";
 import { Logo } from "./logo";
 import { Flag, LOCALE_FLAG } from "./flag";
+import { playHover, playClick } from "@/lib/audio";
 
 type NavDict = {
   home: string;
@@ -71,6 +72,8 @@ export default function Navbar({ lang, nav, langDict }: Props) {
               <Link
                 key={l.href}
                 href={l.href}
+                onMouseEnter={playHover}
+                onClick={playClick}
                 className={`text-sm font-medium transition-colors hover:text-[var(--accent)] ${
                   pathname === l.href ? "text-[var(--accent)]" : "text-[var(--fg-muted)]"
                 }`}
@@ -85,11 +88,12 @@ export default function Navbar({ lang, nav, langDict }: Props) {
             {/* Lang switcher */}
             <div className="relative">
               <button
-                onClick={() => setLangOpen((o) => !o)}
+                onMouseEnter={playHover}
+                onClick={() => { setLangOpen((o) => !o); playClick(); }}
                 className="flex h-8 w-8 items-center justify-center rounded-lg hover:bg-[var(--surface-2)] transition-colors"
                 aria-label={langDict.switch}
               >
-                <Flag code={LOCALE_FLAG[lang] ?? "gb"} size={18} />
+                <Flag code={LOCALE_FLAG[lang] ?? "us"} size={18} />
               </button>
               <AnimatePresence>
                 {langOpen && (
@@ -104,7 +108,8 @@ export default function Navbar({ lang, nav, langDict }: Props) {
                       <Link
                         key={locale}
                         href={switchLang(locale)}
-                        onClick={() => setLangOpen(false)}
+                        onMouseEnter={playHover}
+                        onClick={() => { setLangOpen(false); playClick(); }}
                         className={`flex w-full whitespace-nowrap items-center gap-2 rounded-lg px-3 py-2 text-sm transition-colors hover:bg-[var(--accent-muted)] ${
                           locale === lang ? "text-[var(--accent)] font-semibold" : "text-[var(--fg-muted)]"
                         }`}
@@ -120,7 +125,8 @@ export default function Navbar({ lang, nav, langDict }: Props) {
 
             {/* Theme toggle */}
             <button
-              onClick={toggleTheme}
+              onMouseEnter={playHover}
+              onClick={() => { toggleTheme(); playClick(); }}
               className="flex h-8 w-8 items-center justify-center rounded-lg hover:bg-[var(--surface-2)] text-[var(--fg-muted)] transition-colors"
               aria-label="Toggle theme"
             >
@@ -146,7 +152,8 @@ export default function Navbar({ lang, nav, langDict }: Props) {
                   className="h-8 w-8 rounded-full object-cover border border-[var(--border)]"
                 />
                 <button
-                  onClick={() => signOut()}
+                  onMouseEnter={playHover}
+                  onClick={() => { signOut(); playClick(); }}
                   className="hidden text-sm font-medium text-[var(--fg-muted)] hover:text-[var(--error)] transition-colors sm:block"
                 >
                   {nav.signout}
@@ -154,7 +161,8 @@ export default function Navbar({ lang, nav, langDict }: Props) {
               </div>
             ) : (
               <button
-                onClick={() => signIn("github")}
+                onMouseEnter={playHover}
+                onClick={() => { signIn("github"); playClick(); }}
                 className="rounded-lg bg-[var(--accent)] px-3 py-1.5 text-sm font-semibold text-white hover:bg-[var(--accent-hover)] transition-colors"
               >
                 {nav.signin}
@@ -163,7 +171,8 @@ export default function Navbar({ lang, nav, langDict }: Props) {
 
             {/* Mobile hamburger */}
             <button
-              onClick={() => setMenuOpen((o) => !o)}
+              onMouseEnter={playHover}
+              onClick={() => { setMenuOpen((o) => !o); playClick(); }}
               className="flex h-8 w-8 items-center justify-center rounded-lg hover:bg-[var(--surface-2)] text-[var(--fg-muted)] transition-colors md:hidden"
             >
               {menuOpen ? <X size={16} /> : <Menu size={16} />}
@@ -186,7 +195,8 @@ export default function Navbar({ lang, nav, langDict }: Props) {
                   <Link
                     key={l.href}
                     href={l.href}
-                    onClick={() => setMenuOpen(false)}
+                    onMouseEnter={playHover}
+                    onClick={() => { setMenuOpen(false); playClick(); }}
                     className={`rounded-lg px-3 py-2 text-sm font-medium transition-colors hover:bg-[var(--accent-muted)] ${
                       pathname === l.href ? "text-[var(--accent)] bg-[var(--accent-muted)]" : "text-[var(--fg-muted)]"
                     }`}
@@ -196,7 +206,8 @@ export default function Navbar({ lang, nav, langDict }: Props) {
                 ))}
                 {session && (
                   <button
-                    onClick={() => { signOut(); setMenuOpen(false); }}
+                    onMouseEnter={playHover}
+                    onClick={() => { signOut(); setMenuOpen(false); playClick(); }}
                     className="rounded-lg px-3 py-2 text-sm font-medium text-left text-[var(--error)] hover:bg-[var(--error-muted)] transition-colors"
                   >
                     {nav.signout}

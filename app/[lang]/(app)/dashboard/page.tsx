@@ -2,6 +2,7 @@ import { getDictionary } from "@/app/[lang]/dictionaries";
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
+import { getQuizStats } from "@/lib/server/quiz";
 import DashboardClient from "@/components/dashboard/dashboard-client";
 
 export default async function DashboardPage({ params }: { params: Promise<{ lang: string }> }) {
@@ -24,15 +25,7 @@ export default async function DashboardPage({ params }: { params: Promise<{ lang
   }
 
   // Fetch quiz stats
-  const totalAttempts = await prisma.quizAttempt.count({
-    where: { userId: session.user.id, language: "gsw" },
-  });
-
-  const correctAttempts = await prisma.quizAttempt.count({
-    where: { userId: session.user.id, language: "gsw", correct: true },
-  });
-
-  const accuracy = totalAttempts > 0 ? Math.round((correctAttempts / totalAttempts) * 100) : 0;
+  const { totalQuizzes, accuracy } = await getQuizStats(session.user.id);
 
   return (
     <DashboardClient
@@ -44,7 +37,7 @@ export default async function DashboardPage({ params }: { params: Promise<{ lang
         streak: progress.streak,
         lastStudy: progress.lastStudy?.toISOString() ?? null,
       }}
-      stats={{ totalQuizzes: totalAttempts, accuracy }}
+      stats={{ totalQuizzes, accuracy }}
     />
   );
 }

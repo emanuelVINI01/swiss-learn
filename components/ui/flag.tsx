@@ -12,7 +12,7 @@ export type FlagCode = keyof typeof FLAGS;
 
 /** Maps an app locale (en/pt/de) to the flag that best represents it. */
 export const LOCALE_FLAG: Record<string, FlagCode> = {
-  en: "gb",
+  en: "us",
   pt: "br",
   de: "de",
 };

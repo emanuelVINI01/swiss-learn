@@ -64,7 +64,15 @@
     "backToDashboard": "Back to Dashboard",
     "loading": "Loading...",
     "showCategory": "Show category",
-    "hideCategory": "Hide category"
+    "hideCategory": "Hide category",
+    "pickQuiz": "Choose a word quiz",
+    "pickQuizSubtitle": "You always have 3 fresh quizzes ready. Finish one or shuffle it for a new set of words.",
+    "wordQuiz": "Word Quiz",
+    "readyToPlay": "Ready to play",
+    "inProgress": "answered",
+    "play": "Play",
+    "newWords": "New words",
+    "backToQuizzes": "Back to quizzes"
   },
   "signin": {
     "title": "Sign in to",
@@ -86,6 +94,16 @@
     "en": "English",
     "pt": "Português",
     "de": "Deutsch"
+  },
+  "learningSection": {
+    "badge": "Pace Yourself",
+    "title": "Learn at your own rhythm",
+    "description": "Our interactive modules adapt to your learning speed. No rush, no pressure—just consistent progress tailored for your daily routine."
+  },
+  "progressSection": {
+    "badge": "Track Success",
+    "title": "Celebrate your victories",
+    "description": "Visualize your journey as you master new vocabulary. Every word learned brings you one step closer to fluency and confidence."
   },
   "demo": {
     "livePreview": "Live Preview",

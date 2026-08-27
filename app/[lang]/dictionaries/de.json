@@ -64,7 +64,15 @@
     "backToDashboard": "Zurück zum Dashboard",
     "loading": "Laden...",
     "showCategory": "Kategorie anzeigen",
-    "hideCategory": "Kategorie ausblenden"
+    "hideCategory": "Kategorie ausblenden",
+    "pickQuiz": "Wähle ein Wort-Quiz",
+    "pickQuizSubtitle": "Du hast immer 3 frische Quizze bereit. Beende eines oder tausche es gegen neue Wörter aus.",
+    "wordQuiz": "Wort-Quiz",
+    "readyToPlay": "Bereit zum Spielen",
+    "inProgress": "beantwortet",
+    "play": "Spielen",
+    "newWords": "Neue Wörter",
+    "backToQuizzes": "Zurück zu den Quizzes"
   },
   "signin": {
     "title": "Anmelden bei",
@@ -86,6 +94,16 @@
     "en": "English",
     "pt": "Português",
     "de": "Deutsch"
+  },
+  "learningSection": {
+    "badge": "Eigenes Tempo",
+    "title": "Lernen Sie in Ihrem eigenen Rhythmus",
+    "description": "Unsere interaktiven Module passen sich Ihrer Lerngeschwindigkeit an. Keine Eile, kein Druck — nur stetiger Fortschritt, der auf Ihren Alltag zugeschnitten ist."
+  },
+  "progressSection": {
+    "badge": "Erfolge Verfolgen",
+    "title": "Feiern Sie Ihre Siege",
+    "description": "Visualisieren Sie Ihre Reise, während Sie neues Vokabular meistern. Jedes gelernte Wort bringt Sie der Fließfähigkeit und dem Selbstvertrauen einen Schritt näher."
   },
   "demo": {
     "livePreview": "Live-Vorschau",
