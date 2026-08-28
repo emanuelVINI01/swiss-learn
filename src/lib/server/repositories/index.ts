@@ -11,10 +11,14 @@ export {
   type QuizHistoryRow,
   type AnsweredQuestionRow,
 } from "./quiz-repository";
-export { userProgressRepository, type UserProgressRepository } from "./user-progress-repository";
+export {
+  userProgressRepository,
+  type UserProgressRepository,
+  type UserProgressRow,
+} from "./user-progress-repository";
+export { userRepository, type UserRepository, type UserSummary } from "./user-repository";
 export {
   rankingRepository,
   type RankingRepository,
   type RankingCount,
-  type UserSummary,
 } from "./ranking-repository";

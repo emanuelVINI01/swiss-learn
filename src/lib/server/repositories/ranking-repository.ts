@@ -1,8 +1,9 @@
 import "server-only";
 import { prisma } from "@/lib/prisma";
+import type { UserSummary } from "./user-repository";
 
 export type RankingCount = { ownerId: string; count: number };
-export type UserSummary = { id: string; name: string | null; image: string | null };
+export type { UserSummary };
 
 export interface RankingRepository {
   countCompletedByOwnerSince(since: Date, limit: number): Promise<RankingCount[]>;

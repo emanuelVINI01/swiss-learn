@@ -3,8 +3,13 @@ import { getDictionary } from "@/app/[lang]/dictionaries";
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 import { connection } from "next/server";
-import { prisma } from "@/lib/prisma";
-import { getQuizStats, listQuizHistory, getStreakActivity, getCurrentStreak } from "@/lib/server/quiz";
+import {
+  getQuizStats,
+  listQuizHistory,
+  getStreakActivity,
+  getCurrentStreak,
+  getOrCreateProgress,
+} from "@/lib/server/quiz";
 import DashboardClient from "@/components/dashboard/dashboard-client";
 
 type Props = { params: Promise<{ lang: string }> };
@@ -24,20 +29,9 @@ export default async function DashboardPage({ params }: Props) {
 
   const dict = await getDictionary(lang);
 
-  // Fetch user progress
-  let progress = await prisma.userProgress.findUnique({
-    where: { userId_language: { userId: session.user.id, language: "gsw" } },
-  });
-
-  // Create initial progress if doesn't exist
-  if (!progress) {
-    progress = await prisma.userProgress.create({
-      data: { userId: session.user.id, language: "gsw", xp: 0, streak: 0 },
-    });
-  }
-
-  // Fetch quiz stats, recent history, and the streak activity chart
-  const [{ totalQuizzes, accuracy, skills }, history, streakDays] = await Promise.all([
+  // Fetch quiz stats, recent history, progress, and the streak activity chart
+  const [progress, { totalQuizzes, accuracy, skills }, history, streakDays] = await Promise.all([
+    getOrCreateProgress(session.user.id),
     getQuizStats(session.user.id),
     listQuizHistory(session.user.id),
     getStreakActivity(session.user.id),
@@ -51,7 +45,7 @@ export default async function DashboardPage({ params }: Props) {
       progress={{
         xp: progress.xp,
         streak: getCurrentStreak(streakDays),
-        lastStudy: progress.lastStudy?.toISOString() ?? null,
+        lastStudy: progress.lastStudy,
       }}
       stats={{ totalQuizzes, accuracy }}
       skills={skills}

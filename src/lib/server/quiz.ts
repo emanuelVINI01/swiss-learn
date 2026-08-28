@@ -12,8 +12,14 @@ import {
   type QuizMode,
   type SkillId,
 } from "./quiz-rules";
-import { wordRepository, phraseRepository, quizRepository, userProgressRepository } from "./repositories";
-import type { NewQuestionInput, AnsweredQuestionRow } from "./repositories";
+import {
+  wordRepository,
+  phraseRepository,
+  quizRepository,
+  userProgressRepository,
+  userRepository,
+} from "./repositories";
+import type { NewQuestionInput, AnsweredQuestionRow, UserSummary } from "./repositories";
 
 export {
   SOURCE_LANG,
@@ -283,6 +289,26 @@ export async function listQuizHistory(ownerId: string): Promise<QuizHistoryEntry
       endedAt: (q.endedAt ?? q.createdAt).toISOString(),
     };
   });
+}
+
+export type ProgressSummary = { xp: number; lastStudy: string | null };
+
+// Private dashboard only — ensures a UserProgress row exists so the next
+// completed quiz has somewhere to write XP into. Never use for a public
+// profile lookup (see getXp below), which must stay read-only.
+export async function getOrCreateProgress(ownerId: string): Promise<ProgressSummary> {
+  const progress = await userProgressRepository.findOrCreate(ownerId, SOURCE_LANG);
+  return { xp: progress.xp, lastStudy: progress.lastStudy?.toISOString() ?? null };
+}
+
+// Public profile pages: read-only XP lookup that never creates a row for an
+// anonymous visitor.
+export async function getXp(userId: string): Promise<number> {
+  return userProgressRepository.findXp(userId, SOURCE_LANG);
+}
+
+export async function getUserSummary(userId: string): Promise<UserSummary | null> {
+  return userRepository.findSummaryById(userId);
 }
 
 export type SkillStats = {
