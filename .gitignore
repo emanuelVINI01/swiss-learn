@@ -6,7 +6,9 @@
 
 # testing
 /coverage
-/architeture
+
+# local-only architecture reference docs (not part of this repo's history)
+/architecture
 
 # next.js
 /.next/
