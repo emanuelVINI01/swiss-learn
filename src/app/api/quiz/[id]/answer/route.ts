@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { requireAuth, parseBody } from "@/lib/server/http";
+import { useAuth, parseBody } from "@/lib/server/http";
 import { answerQuestion } from "@/lib/server/quiz";
 import z from "zod";
 
@@ -9,17 +9,16 @@ const answerSchema = z.object({
 });
 
 export async function POST(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
-  const authed = await requireAuth();
-  if (authed instanceof NextResponse) return authed;
+  return useAuth(request, async (authedRequest) => {
+    const parsed = await parseBody(authedRequest, answerSchema);
+    if (parsed instanceof NextResponse) return parsed;
 
-  const parsed = await parseBody(request, answerSchema);
-  if (parsed instanceof NextResponse) return parsed;
-
-  const { id } = await params;
-  try {
-    const result = await answerQuestion(authed.userId, id, parsed.questionId, parsed.selected);
-    return NextResponse.json(result);
-  } catch (err) {
-    return NextResponse.json({ error: err instanceof Error ? err.message : "Failed" }, { status: 400 });
-  }
+    const { id } = await params;
+    try {
+      const result = await answerQuestion(authedRequest.userId, id, parsed.questionId, parsed.selected);
+      return NextResponse.json(result);
+    } catch (err) {
+      return NextResponse.json({ error: err instanceof Error ? err.message : "Failed" }, { status: 400 });
+    }
+  });
 }

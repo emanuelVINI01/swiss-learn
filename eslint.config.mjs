@@ -13,6 +13,14 @@ const eslintConfig = defineConfig([
     "build/**",
     "next-env.d.ts",
   ]),
+  {
+    // Route handlers aren't React components, so `useAuth` here is a plain
+    // callback helper (src/lib/server/http.ts), not a hook.
+    files: ["src/app/api/**/route.ts"],
+    rules: {
+      "react-hooks/rules-of-hooks": "off",
+    },
+  },
 ]);
 
 export default eslintConfig;

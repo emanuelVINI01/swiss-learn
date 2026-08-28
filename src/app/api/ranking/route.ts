@@ -1,16 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
-import { requireAuth } from "@/lib/server/http";
+import { useAuth } from "@/lib/server/http";
 import { getRanking, isRankingPeriod } from "@/lib/server/ranking";
 
 export async function GET(request: NextRequest) {
-  const authed = await requireAuth();
-  if (authed instanceof NextResponse) return authed;
+  return useAuth(request, async (authedRequest) => {
+    const period = authedRequest.nextUrl.searchParams.get("period") ?? "week";
+    if (!isRankingPeriod(period)) {
+      return NextResponse.json({ error: "Invalid period" }, { status: 400 });
+    }
 
-  const period = request.nextUrl.searchParams.get("period") ?? "week";
-  if (!isRankingPeriod(period)) {
-    return NextResponse.json({ error: "Invalid period" }, { status: 400 });
-  }
-
-  const ranking = await getRanking(period);
-  return NextResponse.json({ ranking });
+    const ranking = await getRanking(period);
+    return NextResponse.json({ ranking });
+  });
 }
