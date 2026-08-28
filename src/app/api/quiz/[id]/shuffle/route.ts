@@ -1,12 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
-import { useAuth, parseBody } from "@/lib/server/http";
+import { requireAuth, parseBody } from "@/lib/server/http";
 import { isTargetLang, shuffleQuiz } from "@/lib/server/quiz";
 import z from "zod";
 
 const shuffleSchema = z.object({ lang: z.string().refine(isTargetLang) });
 
 export async function POST(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
-  return useAuth(request, async (authedRequest) => {
+  return requireAuth(request, async (authedRequest) => {
     const parsed = await parseBody(authedRequest, shuffleSchema);
     if (parsed instanceof NextResponse) return parsed;
 

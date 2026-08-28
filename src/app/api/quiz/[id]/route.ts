@@ -1,9 +1,9 @@
 import { NextResponse } from "next/server";
-import { useAuth } from "@/lib/server/http";
+import { requireAuth } from "@/lib/server/http";
 import { getQuizForPlay } from "@/lib/server/quiz";
 
 export async function GET(request: Request, { params }: { params: Promise<{ id: string }> }) {
-  return useAuth(request, async (authedRequest) => {
+  return requireAuth(request, async (authedRequest) => {
     const { id } = await params;
     const quiz = await getQuizForPlay(authedRequest.userId, id);
     if (!quiz) {

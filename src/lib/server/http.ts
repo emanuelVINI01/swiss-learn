@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import type { z } from "zod";
 import { auth } from "@/auth";
 
-export async function useAuth<Req extends Request>(
+export async function requireAuth<Req extends Request>(
   request: Req,
   handler: (authedRequest: Req & { userId: string }) => Promise<NextResponse> | NextResponse
 ): Promise<NextResponse> {

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { useAuth, parseBody } from "@/lib/server/http";
+import { requireAuth, parseBody } from "@/lib/server/http";
 import { isTargetLang, startQuiz } from "@/lib/server/quiz";
 import z from "zod";
 
@@ -10,7 +10,7 @@ const startSchema = z.object({
 });
 
 export async function POST(request: NextRequest) {
-  return useAuth(request, async (authedRequest) => {
+  return requireAuth(request, async (authedRequest) => {
     const parsed = await parseBody(authedRequest, startSchema);
     if (parsed instanceof NextResponse) return parsed;
 
