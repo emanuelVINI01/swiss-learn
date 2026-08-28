@@ -1,12 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
-import { auth } from "@/auth";
+import { requireAuth } from "@/lib/server/http";
 import { getRanking, isRankingPeriod } from "@/lib/server/ranking";
 
 export async function GET(request: NextRequest) {
-  const session = await auth();
-  if (!session?.user?.id) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
+  const authed = await requireAuth();
+  if (authed instanceof NextResponse) return authed;
 
   const period = request.nextUrl.searchParams.get("period") ?? "week";
   if (!isRankingPeriod(period)) {
