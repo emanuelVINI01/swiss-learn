@@ -84,7 +84,29 @@ model WordBase {
   targetText  String // correct translation in targetLang
   distractors String[] // 3 wrong answers in targetLang, precomputed at seed time
   category    String   @default("general")
+  difficulty  Int      @default(500) // 0 (easiest) – 1000 (hardest), see lib/server/quiz-rules.ts
   audioUrl    String? // pronunciation clip for sourceText, generated offline (see scripts/generate-audio.ts)
+  createdAt   DateTime @default(now())
+
+  quizQuestions QuizQuestion[]
+
+  @@unique([sourceLang, targetLang, sourceText])
+  @@index([sourceLang, targetLang])
+}
+
+// A full Swiss German sentence, ready to serve either question type:
+// "phraseFill" (blank one word, pick it from options) or "phraseMeaning"
+// (pick the correct translation of the whole sentence).
+model PhraseBase {
+  id          String   @id @default(cuid())
+  sourceLang  String // e.g. "gsw"
+  targetLang  String // e.g. "en" | "pt" | "de"
+  sourceText  String // the full Swiss German phrase
+  targetText  String // correct translation in targetLang
+  distractors String[] // 3 wrong full-phrase translations, precomputed at seed time
+  category    String   @default("general")
+  difficulty  Int      @default(500) // 0 (easiest) – 1000 (hardest), see lib/server/quiz-rules.ts
+  audioUrl    String?
   createdAt   DateTime @default(now())
 
   quizQuestions QuizQuestion[]
@@ -102,6 +124,7 @@ model Quiz {
   status      String    @default("active") // active | completed | skipped
   total       Int
   score       Int?
+  xpGained    Int? // persisted at finish time so later rule-file tweaks never rewrite history
   createdAt   DateTime  @default(now())
   endedAt     DateTime?
 
@@ -115,17 +138,22 @@ model QuizQuestion {
   id            String    @id @default(cuid())
   quizId        String
   position      Int
-  wordBaseId    String
-  prompt        String // snapshot of sourceText at generation time
-  correctAnswer String // snapshot of targetText at generation time
+  questionType  String    @default("word") // "word" | "phraseFill" | "phraseMeaning"
+  wordBaseId    String?
+  phraseBaseId  String?
+  prompt        String // snapshot of sourceText (or phrase-with-blank) at generation time
+  correctAnswer String // snapshot of the correct option at generation time
+  difficulty    Int       @default(500) // snapshot of the source word/phrase's difficulty at generation time — see lib/server/quiz-rules.ts
   options       String[] // shuffled 4 options shown to the user, includes correctAnswer
   selected      String?
   correct       Boolean?
   answeredAt    DateTime?
 
-  quiz     Quiz     @relation(fields: [quizId], references: [id], onDelete: Cascade)
-  wordBase WordBase @relation(fields: [wordBaseId], references: [id])
+  quiz       Quiz        @relation(fields: [quizId], references: [id], onDelete: Cascade)
+  wordBase   WordBase?   @relation(fields: [wordBaseId], references: [id])
+  phraseBase PhraseBase? @relation(fields: [phraseBaseId], references: [id])
 
   @@unique([quizId, position])
   @@index([wordBaseId])
+  @@index([phraseBaseId])
 }

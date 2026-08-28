@@ -1,0 +1,25 @@
+import type { WordEntry } from "./types";
+
+export const COLORS: WordEntry[] = [
+  { swiss: "Rot", category: "colors", difficulty: 117, meaning: { en: "Red", pt: "Vermelho", de: "Rot" } },
+  { swiss: "Blau", category: "colors", difficulty: 211, meaning: { en: "Blue", pt: "Azul", de: "Blau" } },
+  { swiss: "Gääl", category: "colors", difficulty: 171, meaning: { en: "Yellow", pt: "Amarelo", de: "Gelb" } },
+  { swiss: "Grüen", category: "colors", difficulty: 129, meaning: { en: "Green", pt: "Verde", de: "Grün" } },
+  { swiss: "Schwarz", category: "colors", difficulty: 476, meaning: { en: "Black", pt: "Preto", de: "Schwarz" } },
+  { swiss: "Wiiss", category: "colors", difficulty: 377, meaning: { en: "White", pt: "Branco", de: "Weiß" } },
+  { swiss: "Grau", category: "colors", difficulty: 91, meaning: { en: "Gray", pt: "Cinza", de: "Grau" } },
+  { swiss: "Bruun", category: "colors", difficulty: 260, meaning: { en: "Brown", pt: "Marrom", de: "Braun" } },
+  { swiss: "Orange", category: "colors", difficulty: 169, meaning: { en: "Orange", pt: "Laranja", de: "Orange" } },
+  { swiss: "Rosa", category: "colors", difficulty: 85, meaning: { en: "Pink", pt: "Rosa", de: "Rosa" } },
+  { swiss: "Violett", category: "colors", difficulty: 479, meaning: { en: "Purple", pt: "Roxo", de: "Violett" } },
+  { swiss: "Lila", category: "colors", difficulty: 304, meaning: { en: "Purple", pt: "Lilás", de: "Lila" } },
+  { swiss: "Guld", category: "colors", difficulty: 317, meaning: { en: "Gold", pt: "Ouro/Dourado", de: "Gold" } },
+  { swiss: "Silber", category: "colors", difficulty: 411, meaning: { en: "Silver", pt: "Prata", de: "Silber" } },
+  { swiss: "Häll", category: "colors", difficulty: 140, meaning: { en: "Light (color)", pt: "Claro (cor)", de: "Hell" } },
+  { swiss: "Dunkel", category: "colors", difficulty: 169, meaning: { en: "Dark (color)", pt: "Escuro (cor)", de: "Dunkel" } },
+  { swiss: "Hällblau", category: "colors", difficulty: 480, meaning: { en: "Light blue", pt: "Azul claro", de: "Hellblau" } },
+  { swiss: "Dunkelgrüen", category: "colors", difficulty: 381, meaning: { en: "Dark green", pt: "Verde escuro", de: "Dunkelgrün" } },
+  { swiss: "Bunt", category: "colors", difficulty: 155, meaning: { en: "Colorful", pt: "Colorido", de: "Bunt" } },
+  { swiss: "Farbig", category: "colors", difficulty: 175, meaning: { en: "Colored", pt: "Colorido", de: "Farbig" } },
+  { swiss: "Farb", category: "colors", difficulty: 94, meaning: { en: "Color", pt: "Cor", de: "Farbe" } },
+];

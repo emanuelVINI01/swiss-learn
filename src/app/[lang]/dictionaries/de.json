@@ -1,0 +1,179 @@
+{
+  "seo": {
+    "title": "SwissLearn — Schweizerdeutsch online lernen",
+    "description": "Lerne Schweizerdeutsch online mit interaktiven Quizzen, echtem Wortschatz, Audio-Aussprache und Spaced Repetition. Kostenlos starten."
+  },
+  "nav": {
+    "home": "Startseite",
+    "signin": "Anmelden",
+    "dashboard": "Dashboard",
+    "questions": "Üben",
+    "ranking": "Rangliste",
+    "signout": "Abmelden"
+  },
+  "hero": {
+    "badge": "Schweizerdeutsch lernen",
+    "title": "Sprechen wie ein",
+    "titleAccent": "echter Schweizer",
+    "subtitle": "Meistere Schweizerdeutsch mit interaktiven Übungen, echtem Wortschatz und Spaced Repetition. Von Begrüßungen bis zu Alltagsgesprächen.",
+    "cta": "Kostenlos starten",
+    "ctaSignin": "Mit GitHub anmelden",
+    "stats": {
+      "words": "Schweizer Wörter",
+      "accuracy": "Genauigkeit",
+      "learners": "Lernende"
+    },
+    "community": "Lernende üben bereits aus"
+  },
+  "features": {
+    "title": "Alles, was Sie brauchen,",
+    "titleAccent": "um effektiv zu lernen",
+    "quiz": {
+      "title": "Interaktive Quizze",
+      "desc": "Multiple-Choice-Fragen mit echtem Schweizerdeutsch. Sofortiges Feedback auf jede Antwort."
+    },
+    "progress": {
+      "title": "Fortschritt verfolgen",
+      "desc": "XP-Punkte, tägliche Streaks und Genauigkeitsstatistiken. Beobachten Sie, wie Ihr Schweizerdeutsch wächst."
+    },
+    "i18n": {
+      "title": "Mehrsprachig",
+      "desc": "Oberfläche auf Englisch, Portugiesisch und Deutsch verfügbar. Lernen Sie in Ihrer Komfortsprache."
+    }
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "welcome": "Willkommen zurück",
+    "chooseLanguage": "Lernsprache",
+    "xp": "XP",
+    "streak": "Tage Streak",
+    "accuracy": "Genauigkeit",
+    "totalQuizzes": "Quizze gesamt",
+    "startPractice": "Übung starten",
+    "stats": "Ihre Statistiken",
+    "noProgress": "Noch kein Fortschritt. Fangen Sie an zu üben!",
+    "swissGerman": "Schweizerdeutsch",
+    "history": "Quiz-Verlauf",
+    "noHistory": "Noch keine Quizze abgeschlossen.",
+    "ranking": "Rangliste",
+    "rankingSubtitle": "Sehen Sie, wer die meisten Lektionen abgeschlossen hat.",
+    "rankingDay": "Heute",
+    "rankingWeek": "Diese Woche",
+    "rankingMonth": "Diesen Monat",
+    "noRanking": "Noch keine Aktivität in diesem Zeitraum.",
+    "lessons": "Lektionen",
+    "you": "Du",
+    "level": "Level",
+    "lastStudy": "Zuletzt gelernt",
+    "skills": "Deine Fähigkeiten",
+    "skillListening": "Hörverstehen",
+    "skillVocabulary": "Wortschatz",
+    "skillReading": "Lesen",
+    "skillAnswered": "beantwortet",
+    "skillNoData": "Üben zum Freischalten",
+    "streakChart": "Lernsträhne",
+    "streakDays": "Tage Serie",
+    "streakLess": "Weniger",
+    "streakMore": "Mehr",
+    "streakActivities": "Antworten",
+    "shareProfile": "Profil teilen",
+    "shareProfileCopied": "Link kopiert!",
+    "publicProfile": "Öffentliches Profil"
+  },
+  "questions": {
+    "title": "Üben",
+    "choose": "Was bedeutet das?",
+    "choosePhraseFill": "Wähle das fehlende Wort",
+    "correct": "Richtig!",
+    "wrong": "Falsch!",
+    "meaning": "Bedeutung",
+    "next": "Weiter",
+    "finish": "Beenden",
+    "score": "Ergebnis",
+    "of": "von",
+    "results": "Quizergebnis",
+    "playAgain": "Nochmal spielen",
+    "backToDashboard": "Zurück zum Dashboard",
+    "loading": "Laden...",
+    "showCategory": "Kategorie anzeigen",
+    "hideCategory": "Kategorie ausblenden",
+    "playAudio": "Aussprache abspielen",
+    "listenPrompt": "Hören und die Bedeutung wählen",
+    "listenPromptFill": "Hör dir den Satz an und errate das fehlende Wort",
+    "studyTitle": "Wie möchtest du üben?",
+    "studySubtitle": "Wähle einen Modus, um ein neues Quiz zu starten.",
+    "modeLevel": "Nach Level",
+    "modeLevelDesc": "Passt sich deinem XP an und wächst mit dir",
+    "modeRandom": "Zufällig",
+    "modeRandomDesc": "Berücksichtigt dein Level nicht",
+    "modeChooseType": "Typ wählen",
+    "modeChooseTypeDesc": "Wähle genau, was du üben willst",
+    "typeWord": "Wörter",
+    "typeWordDesc": "Ordne ein Schweizer Wort seiner Bedeutung zu",
+    "typePhraseFill": "Lücke füllen",
+    "typePhraseFillDesc": "Wähle das fehlende Wort in einem Satz",
+    "typePhraseMeaning": "Satzbedeutung",
+    "typePhraseMeaningDesc": "Übersetze einen ganzen Satz",
+    "back": "Zurück",
+    "backToQuizzes": "Zurück zum Menü",
+    "otherOptions": "Andere Optionen ansehen",
+    "shuffle": "Neue Wörter"
+  },
+  "signin": {
+    "title": "Anmelden bei",
+    "titleAccent": "SwissLearn",
+    "subtitle": "Verfolgen Sie Ihren Fortschritt und schalten Sie alle Funktionen frei",
+    "github": "Mit GitHub anmelden",
+    "google": "Mit Google anmelden",
+    "comingSoon": "demnächst",
+    "terms": "Mit der Anmeldung stimmen Sie unseren",
+    "termsLink": "Nutzungsbedingungen",
+    "secureSignIn": "sichere anmeldung",
+    "privacyNote": "Wir lesen nur Ihr öffentliches Profil. Wir posten niemals in Ihrem Namen."
+  },
+  "sound": {
+    "mute": "Töne stummschalten",
+    "unmute": "Töne aktivieren"
+  },
+  "theme": {
+    "toggle": "Design umschalten",
+    "light": "Hell",
+    "dark": "Dunkel"
+  },
+  "lang": {
+    "switch": "Sprache",
+    "en": "English",
+    "pt": "Português",
+    "de": "Deutsch"
+  },
+  "learningSection": {
+    "badge": "Eigenes Tempo",
+    "title": "Lernen Sie in Ihrem eigenen Rhythmus",
+    "description": "Unsere interaktiven Module passen sich Ihrer Lerngeschwindigkeit an. Keine Eile, kein Druck — nur stetiger Fortschritt, der auf Ihren Alltag zugeschnitten ist."
+  },
+  "progressSection": {
+    "badge": "Erfolge Verfolgen",
+    "title": "Feiern Sie Ihre Siege",
+    "description": "Visualisieren Sie Ihre Reise, während Sie neues Vokabular meistern. Jedes gelernte Wort bringt Sie der Fließfähigkeit und dem Selbstvertrauen einen Schritt näher."
+  },
+  "demo": {
+    "livePreview": "Live-Vorschau",
+    "greeting": "Grüezi!",
+    "description": "Schweizerdeutsch ist nicht einfach nur Deutsch mit Akzent — es ist ein völlig anderer gesprochener Dialekt. Wir machen ihn zugänglich.",
+    "exampleQuestion": "Beispielfrage",
+    "options": {
+      "hello": "Guten Tag / Hallo",
+      "goodbye": "Auf Wiedersehen",
+      "thanks": "Danke",
+      "bicycle": "Fahrrad"
+    }
+  },
+  "ctaBanner": {
+    "title": "Bereit, Schweizerdeutsch zu lernen?",
+    "subtitle": "Schließen Sie sich Tausenden von Lernenden an. Melden Sie sich mit GitHub an und beginnen Sie Ihre Reise noch heute."
+  },
+  "footer": {
+    "tagline": "Schweizerdeutsch lernen, ein Wort nach dem anderen.",
+    "rights": "Alle Rechte vorbehalten."
+  }
+}

@@ -1,0 +1,179 @@
+{
+  "seo": {
+    "title": "SwissLearn — Learn Swiss German Online",
+    "description": "Learn Swiss German (Schweizerdeutsch) online with interactive quizzes, real vocabulary, audio pronunciation, and spaced repetition. Free to start."
+  },
+  "nav": {
+    "home": "Home",
+    "signin": "Sign In",
+    "dashboard": "Dashboard",
+    "questions": "Practice",
+    "ranking": "Ranking",
+    "signout": "Sign Out"
+  },
+  "hero": {
+    "badge": "Learn Swiss German",
+    "title": "Speak like a",
+    "titleAccent": "Swiss local",
+    "subtitle": "Master Swiss German through interactive exercises, real vocabulary, and spaced repetition. From greetings to daily conversations.",
+    "cta": "Start Learning Free",
+    "ctaSignin": "Continue with GitHub",
+    "stats": {
+      "words": "Swiss words",
+      "accuracy": "Accuracy",
+      "learners": "Learners"
+    },
+    "community": "Learners already practicing from"
+  },
+  "features": {
+    "title": "Everything you need to",
+    "titleAccent": "learn effectively",
+    "quiz": {
+      "title": "Interactive Quizzes",
+      "desc": "Multiple choice questions with real Swiss German vocabulary. Instant feedback on every answer."
+    },
+    "progress": {
+      "title": "Track Progress",
+      "desc": "XP points, daily streaks, and accuracy stats. Watch your Swiss German grow day by day."
+    },
+    "i18n": {
+      "title": "Multilingual",
+      "desc": "Interface available in English, Portuguese, and German. Learn in your comfort language."
+    }
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "welcome": "Welcome back",
+    "chooseLanguage": "Learning language",
+    "xp": "XP",
+    "streak": "Day streak",
+    "accuracy": "Accuracy",
+    "totalQuizzes": "Total quizzes",
+    "startPractice": "Start Practice",
+    "stats": "Your Stats",
+    "noProgress": "No progress yet. Start practicing!",
+    "swissGerman": "Swiss German",
+    "history": "Quiz History",
+    "noHistory": "No quizzes completed yet.",
+    "ranking": "Ranking",
+    "rankingSubtitle": "See who completed the most lessons.",
+    "rankingDay": "Today",
+    "rankingWeek": "This week",
+    "rankingMonth": "This month",
+    "noRanking": "No activity yet for this period.",
+    "lessons": "lessons",
+    "you": "You",
+    "level": "Level",
+    "lastStudy": "Last study",
+    "skills": "Your Skills",
+    "skillListening": "Listening",
+    "skillVocabulary": "Vocabulary",
+    "skillReading": "Reading",
+    "skillAnswered": "answered",
+    "skillNoData": "Practice to unlock",
+    "streakChart": "Study streak",
+    "streakDays": "day streak",
+    "streakLess": "Less",
+    "streakMore": "More",
+    "streakActivities": "answers",
+    "shareProfile": "Share profile",
+    "shareProfileCopied": "Link copied!",
+    "publicProfile": "Public profile"
+  },
+  "questions": {
+    "title": "Practice",
+    "choose": "What does this mean?",
+    "choosePhraseFill": "Choose the missing word",
+    "correct": "Correct!",
+    "wrong": "Wrong!",
+    "meaning": "Meaning",
+    "next": "Next",
+    "finish": "Finish",
+    "score": "Score",
+    "of": "of",
+    "results": "Quiz Results",
+    "playAgain": "Play Again",
+    "backToDashboard": "Back to Dashboard",
+    "loading": "Loading...",
+    "showCategory": "Show category",
+    "hideCategory": "Hide category",
+    "playAudio": "Play pronunciation",
+    "listenPrompt": "Listen and choose the meaning",
+    "listenPromptFill": "Listen to the phrase and guess the missing word",
+    "studyTitle": "How do you want to study?",
+    "studySubtitle": "Pick a mode to start a fresh quiz.",
+    "modeLevel": "By level",
+    "modeLevelDesc": "Adapts to your XP and evolves with you",
+    "modeRandom": "Random",
+    "modeRandomDesc": "Doesn't take your level into account",
+    "modeChooseType": "Choose the type",
+    "modeChooseTypeDesc": "Pick exactly what to practice",
+    "typeWord": "Words",
+    "typeWordDesc": "Match a Swiss word to its meaning",
+    "typePhraseFill": "Fill the blank",
+    "typePhraseFillDesc": "Pick the missing word in a sentence",
+    "typePhraseMeaning": "Sentence meaning",
+    "typePhraseMeaningDesc": "Translate a whole sentence",
+    "back": "Back",
+    "backToQuizzes": "Back to menu",
+    "otherOptions": "See other options",
+    "shuffle": "New words"
+  },
+  "signin": {
+    "title": "Sign in to",
+    "titleAccent": "SwissLearn",
+    "subtitle": "Track your progress and unlock all features",
+    "github": "Continue with GitHub",
+    "google": "Continue with Google",
+    "comingSoon": "coming soon",
+    "terms": "By signing in, you agree to our",
+    "termsLink": "Terms of Service",
+    "secureSignIn": "secure sign in",
+    "privacyNote": "We only read your public profile. We never post on your behalf."
+  },
+  "theme": {
+    "toggle": "Toggle theme",
+    "light": "Light",
+    "dark": "Dark"
+  },
+  "sound": {
+    "mute": "Mute sounds",
+    "unmute": "Unmute sounds"
+  },
+  "lang": {
+    "switch": "Language",
+    "en": "English",
+    "pt": "Português",
+    "de": "Deutsch"
+  },
+  "learningSection": {
+    "badge": "Pace Yourself",
+    "title": "Learn at your own rhythm",
+    "description": "Our interactive modules adapt to your learning speed. No rush, no pressure—just consistent progress tailored for your daily routine."
+  },
+  "progressSection": {
+    "badge": "Track Success",
+    "title": "Celebrate your victories",
+    "description": "Visualize your journey as you master new vocabulary. Every word learned brings you one step closer to fluency and confidence."
+  },
+  "demo": {
+    "livePreview": "Live Preview",
+    "greeting": "Grüezi!",
+    "description": "Swiss German (Schweizerdeutsch) is not just German with an accent — it's a whole different spoken dialect. We make it approachable.",
+    "exampleQuestion": "Example Question",
+    "options": {
+      "hello": "Good day / Hello",
+      "goodbye": "Goodbye",
+      "thanks": "Thank you",
+      "bicycle": "Bicycle"
+    }
+  },
+  "ctaBanner": {
+    "title": "Ready to learn Swiss German?",
+    "subtitle": "Join thousands of learners. Sign in with GitHub and start your journey today."
+  },
+  "footer": {
+    "tagline": "Learn Swiss German, one word at a time.",
+    "rights": "All rights reserved."
+  }
+}

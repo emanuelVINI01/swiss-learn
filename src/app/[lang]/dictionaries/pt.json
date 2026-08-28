@@ -1,0 +1,179 @@
+{
+  "seo": {
+    "title": "SwissLearn — Aprenda Suíço-Alemão Online",
+    "description": "Aprenda suíço-alemão (Schweizerdeutsch) online com quizzes interativos, vocabulário real, pronúncia em áudio e repetição espaçada. Comece grátis."
+  },
+  "nav": {
+    "home": "Início",
+    "signin": "Entrar",
+    "dashboard": "Painel",
+    "questions": "Praticar",
+    "ranking": "Ranking",
+    "signout": "Sair"
+  },
+  "hero": {
+    "badge": "Aprenda Suíço-Alemão",
+    "title": "Fale como um",
+    "titleAccent": "suíço de verdade",
+    "subtitle": "Domine o suíço-alemão com exercícios interativos, vocabulário real e repetição espaçada. De cumprimentos a conversas do dia a dia.",
+    "cta": "Começar Grátis",
+    "ctaSignin": "Entrar com GitHub",
+    "stats": {
+      "words": "palavras suíças",
+      "accuracy": "Precisão",
+      "learners": "Aprendizes"
+    },
+    "community": "Aprendizes praticando de"
+  },
+  "features": {
+    "title": "Tudo que você precisa para",
+    "titleAccent": "aprender de verdade",
+    "quiz": {
+      "title": "Quizzes Interativos",
+      "desc": "Perguntas de múltipla escolha com vocabulário real do suíço-alemão. Feedback instantâneo em cada resposta."
+    },
+    "progress": {
+      "title": "Acompanhe o Progresso",
+      "desc": "Pontos XP, sequências diárias e estatísticas de precisão. Veja seu suíço-alemão crescer dia a dia."
+    },
+    "i18n": {
+      "title": "Multilíngue",
+      "desc": "Interface disponível em inglês, português e alemão. Aprenda no idioma em que você se sente confortável."
+    }
+  },
+  "dashboard": {
+    "title": "Painel",
+    "welcome": "Bem-vindo de volta",
+    "chooseLanguage": "Idioma de aprendizado",
+    "xp": "XP",
+    "streak": "Dias seguidos",
+    "accuracy": "Precisão",
+    "totalQuizzes": "Total de quizzes",
+    "startPractice": "Começar Prática",
+    "stats": "Suas Estatísticas",
+    "noProgress": "Nenhum progresso ainda. Comece a praticar!",
+    "swissGerman": "Suíço-Alemão",
+    "history": "Histórico de Quizzes",
+    "noHistory": "Nenhum quiz concluído ainda.",
+    "ranking": "Ranking",
+    "rankingSubtitle": "Veja quem completou mais lições.",
+    "rankingDay": "Hoje",
+    "rankingWeek": "Esta semana",
+    "rankingMonth": "Este mês",
+    "noRanking": "Nenhuma atividade ainda neste período.",
+    "lessons": "lições",
+    "you": "Você",
+    "level": "Nível",
+    "lastStudy": "Último estudo",
+    "skills": "Suas Habilidades",
+    "skillListening": "Escuta",
+    "skillVocabulary": "Vocabulário",
+    "skillReading": "Leitura",
+    "skillAnswered": "respondidas",
+    "skillNoData": "Pratique para desbloquear",
+    "streakChart": "Sequência de estudos",
+    "streakDays": "dias seguidos",
+    "streakLess": "Menos",
+    "streakMore": "Mais",
+    "streakActivities": "respostas",
+    "shareProfile": "Compartilhar perfil",
+    "shareProfileCopied": "Link copiado!",
+    "publicProfile": "Perfil público"
+  },
+  "questions": {
+    "title": "Praticar",
+    "choose": "O que significa isso?",
+    "choosePhraseFill": "Escolha a palavra que falta",
+    "correct": "Correto!",
+    "wrong": "Errado!",
+    "meaning": "Significado",
+    "next": "Próximo",
+    "finish": "Finalizar",
+    "score": "Pontuação",
+    "of": "de",
+    "results": "Resultado do Quiz",
+    "playAgain": "Jogar Novamente",
+    "backToDashboard": "Voltar ao Painel",
+    "loading": "Carregando...",
+    "showCategory": "Mostrar categoria",
+    "hideCategory": "Ocultar categoria",
+    "playAudio": "Ouvir pronúncia",
+    "listenPrompt": "Ouça e escolha o significado",
+    "listenPromptFill": "Ouça a frase e adivinhe a palavra que falta",
+    "studyTitle": "Como você quer estudar?",
+    "studySubtitle": "Escolha um modo para começar um quiz novo.",
+    "modeLevel": "Por nível",
+    "modeLevelDesc": "Se adapta ao seu XP e evolui com você",
+    "modeRandom": "Aleatório",
+    "modeRandomDesc": "Não considera seu nível",
+    "modeChooseType": "Escolher o tipo",
+    "modeChooseTypeDesc": "Escolha exatamente o que praticar",
+    "typeWord": "Palavras",
+    "typeWordDesc": "Combine uma palavra suíça com seu significado",
+    "typePhraseFill": "Complete a frase",
+    "typePhraseFillDesc": "Escolha a palavra que falta numa frase",
+    "typePhraseMeaning": "Significado da frase",
+    "typePhraseMeaningDesc": "Traduza uma frase inteira",
+    "back": "Voltar",
+    "backToQuizzes": "Voltar ao menu",
+    "otherOptions": "Ver outras opções",
+    "shuffle": "Palavras novas"
+  },
+  "signin": {
+    "title": "Entre no",
+    "titleAccent": "SwissLearn",
+    "subtitle": "Acompanhe seu progresso e desbloqueie todos os recursos",
+    "github": "Entrar com GitHub",
+    "google": "Entrar com Google",
+    "comingSoon": "em breve",
+    "terms": "Ao entrar, você concorda com nossos",
+    "termsLink": "Termos de Serviço",
+    "secureSignIn": "login seguro",
+    "privacyNote": "Nós só lemos seu perfil público. Nunca postamos em seu nome."
+  },
+  "sound": {
+    "mute": "Desativar sons",
+    "unmute": "Ativar sons"
+  },
+  "theme": {
+    "toggle": "Alternar tema",
+    "light": "Claro",
+    "dark": "Escuro"
+  },
+  "lang": {
+    "switch": "Idioma",
+    "en": "English",
+    "pt": "Português",
+    "de": "Deutsch"
+  },
+  "learningSection": {
+    "badge": "No Seu Ritmo",
+    "title": "Aprenda no seu próprio ritmo",
+    "description": "Nossos módulos interativos se adaptam à sua velocidade de aprendizado. Sem pressa, sem pressão — apenas progresso consistente feito para sua rotina diária."
+  },
+  "progressSection": {
+    "badge": "Acompanhe o Sucesso",
+    "title": "Celebre suas vitórias",
+    "description": "Visualize sua jornada enquanto domina novo vocabulário. Cada palavra aprendida deixa você um passo mais perto da fluência e confiança."
+  },
+  "demo": {
+    "livePreview": "Prévia ao Vivo",
+    "greeting": "Grüezi!",
+    "description": "O suíço-alemão (Schweizerdeutsch) não é apenas alemão com sotaque — é um dialeto falado completamente diferente. Nós o tornamos acessível.",
+    "exampleQuestion": "Exemplo de Pergunta",
+    "options": {
+      "hello": "Bom dia / Olá",
+      "goodbye": "Adeus",
+      "thanks": "Obrigado",
+      "bicycle": "Bicicleta"
+    }
+  },
+  "ctaBanner": {
+    "title": "Pronto para aprender suíço-alemão?",
+    "subtitle": "Junte-se a milhares de estudantes. Entre com o GitHub e comece sua jornada hoje."
+  },
+  "footer": {
+    "tagline": "Aprenda suíço-alemão, uma palavra de cada vez.",
+    "rights": "Todos os direitos reservados."
+  }
+}

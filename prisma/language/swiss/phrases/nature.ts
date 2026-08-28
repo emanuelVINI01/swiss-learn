@@ -1,0 +1,33 @@
+import type { PhraseEntry } from "./types";
+
+export const NATURE: PhraseEntry[] = [
+  { swiss: "Es isch schöns Wätter hüt", category: "nature", difficulty: 532, meaning: { en: "The weather is beautiful today", pt: "O tempo está lindo hoje", de: "Es ist schönes Wetter heute" } },
+  { swiss: "D'Bärg sind schön", category: "nature", difficulty: 414, meaning: { en: "The mountains are beautiful", pt: "As montanhas são lindas", de: "Die Berge sind schön" } },
+  { swiss: "Ich gah gern in Wald", category: "nature", difficulty: 443, meaning: { en: "I like going to the forest", pt: "Eu gosto de ir à floresta", de: "Ich gehe gerne in den Wald" } },
+  { swiss: "Mir gönd go wandere", category: "nature", difficulty: 421, meaning: { en: "We are going hiking", pt: "Nós vamos fazer trilha", de: "Wir gehen wandern" } },
+  { swiss: "Es rägnet", category: "nature", difficulty: 364, meaning: { en: "It is raining", pt: "Está chovendo", de: "Es regnet" } },
+  { swiss: "Es schneit", category: "nature", difficulty: 105, meaning: { en: "It is snowing", pt: "Está nevando", de: "Es schneit" } },
+  { swiss: "Gsehsch de See?", category: "nature", difficulty: 464, meaning: { en: "Do you see the lake?", pt: "Você vê o lago?", de: "Siehst du den See?" } },
+  { swiss: "Mir lönd eus a de Sunne brätle", category: "nature", difficulty: 597, meaning: { en: "We are sunbathing", pt: "Estamos tomando sol", de: "Wir sonnen uns" } },
+  { swiss: "D'Luft isch früsch", category: "nature", difficulty: 303, meaning: { en: "The air is fresh", pt: "O ar está fresco", de: "Die Luft ist frisch" } },
+  { swiss: "Pass uf em Iis uf", category: "nature", difficulty: 363, meaning: { en: "Watch out for the ice", pt: "Cuidado com o gelo", de: "Pass auf dem Eis auf" } },
+  { swiss: "S Wätter schlaat um", category: "nature", difficulty: 488, meaning: { en: "The weather is changing (getting worse)", pt: "O tempo está virando", de: "Das Wetter schlägt um" } },
+  { swiss: "Gits es Gwitter?", category: "nature", difficulty: 470, meaning: { en: "Is there going to be a thunderstorm?", pt: "Vai ter tempestade?", de: "Gibt es ein Gewitter?" } },
+  { swiss: "De Wind blaaset starch", category: "nature", difficulty: 624, meaning: { en: "The wind is blowing strongly", pt: "O vento está soprando forte", de: "Der Wind bläst stark" } },
+  { swiss: "Es het vill Schnee", category: "nature", difficulty: 383, meaning: { en: "There is a lot of snow", pt: "Tem muita neve", de: "Es hat viel Schnee" } },
+  { swiss: "D'Blätter gheied abe", category: "nature", difficulty: 543, meaning: { en: "The leaves are falling", pt: "As folhas estão caindo", de: "Die Blätter fallen" } },
+  { swiss: "Der Himmel isch blau", category: "nature", difficulty: 551, meaning: { en: "The sky is blue", pt: "O céu está azul", de: "Der Himmel ist blau" } },
+  { swiss: "Mir gönd an See", category: "nature", difficulty: 429, meaning: { en: "We are going to the lake", pt: "Nós vamos ao lago", de: "Wir gehen an den See" } },
+  { swiss: "Pass uf d'Steine uf", category: "nature", difficulty: 288, meaning: { en: "Watch out for the stones", pt: "Cuidado com as pedras", de: "Pass auf die Steine auf" } },
+  { swiss: "D'Natur isch ruhig da", category: "nature", difficulty: 367, meaning: { en: "Nature is peaceful here", pt: "A natureza é calma aqui", de: "Die Natur ist ruhig hier" } },
+  { swiss: "Es blitzt gäll", category: "nature", difficulty: 330, meaning: { en: "Lightning strikes brightly", pt: "Há raios brilhantes", de: "Es blitzt hell" } },
+  { swiss: "Der Hund bellt", category: "nature", difficulty: 293, meaning: { en: "The dog barks", pt: "O cachorro late", de: "Der Hund bellt" } },
+  { swiss: "Vögeli singed", category: "nature", difficulty: 367, meaning: { en: "Birds are singing", pt: "Os pássaros estão cantando", de: "Vögel singen" } },
+  { swiss: "D'Sunne gaht under", category: "nature", difficulty: 384, meaning: { en: "The sun is setting", pt: "O sol está se pondo", de: "Die Sonne geht unter" } },
+  { swiss: "D'Sunne gaht uf", category: "nature", difficulty: 356, meaning: { en: "The sun is rising", pt: "O sol está nascendo", de: "Die Sonne geht auf" } },
+  { swiss: "Es isch e chlare Nacht", category: "nature", difficulty: 637, meaning: { en: "It is a clear night", pt: "É uma noite clara", de: "Es ist eine klare Nacht" } },
+  { swiss: "D'Stärne lüüchted", category: "nature", difficulty: 428, meaning: { en: "The stars are shining", pt: "As estrelas estão brilhando", de: "Die Sterne leuchten" } },
+  { swiss: "S Wasser isch chalt", category: "nature", difficulty: 522, meaning: { en: "The water is cold", pt: "A água está fria", de: "Das Wasser ist kalt" } },
+  { swiss: "Bisch scho mal uf em Bärg gsi?", category: "nature", difficulty: 783, meaning: { en: "Have you ever been on the mountain?", pt: "Você já esteve na montanha?", de: "Warst du schon mal auf dem Berg?" } },
+  { swiss: "Ich ha e Blume pflückt", category: "nature", difficulty: 611, meaning: { en: "I picked a flower", pt: "Eu colhi uma flor", de: "Ich habe eine Blume gepflückt" } }
+];
