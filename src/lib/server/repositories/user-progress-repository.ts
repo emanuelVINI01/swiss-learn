@@ -1,7 +1,7 @@
 import "server-only";
 import { prisma } from "@/lib/prisma";
 
-export type UserProgressRow = { xp: number; lastStudy: Date | null };
+export type UserProgressRow = { xp: number; lastStudy: Date | null; streak: number };
 
 export interface UserProgressRepository {
   findXp(userId: string, language: string): Promise<number>;
@@ -21,7 +21,7 @@ export class PrismaUserProgressRepository implements UserProgressRepository {
   async find(userId: string, language: string): Promise<UserProgressRow | null> {
     return prisma.userProgress.findUnique({
       where: { userId_language: { userId, language } },
-      select: { xp: true, lastStudy: true },
+      select: { xp: true, lastStudy: true, streak: true },
     });
   }
 
@@ -33,7 +33,7 @@ export class PrismaUserProgressRepository implements UserProgressRepository {
     if (existing) return existing;
     return prisma.userProgress.create({
       data: { userId, language, xp: 0, streak: 0 },
-      select: { xp: true, lastStudy: true },
+      select: { xp: true, lastStudy: true, streak: true },
     });
   }
 }

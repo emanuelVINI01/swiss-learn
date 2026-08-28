@@ -235,6 +235,30 @@ export async function answerQuestion(
   return { correct, correctAnswer: question.correctAnswer };
 }
 
+function startOfDay(date: Date): Date {
+  const copy = new Date(date);
+  copy.setHours(0, 0, 0, 0);
+  return copy;
+}
+
+// The next value for the persisted UserProgress.streak column, given the
+// streak/lastStudy it currently holds. Calendar-day comparison, not a
+// rolling 24h window: finishing a second quiz the same day holds the streak
+// steady (no double-increment), one day since the last study extends it, and
+// any bigger gap resets to 1. Only called from finishQuiz — this is the
+// single write path for the column, kept separate from getCurrentStreak()
+// below, which recomputes a read-only view from the full activity log.
+function nextStreak(previousStreak: number, lastStudy: Date | null): number {
+  if (!lastStudy) return 1;
+
+  const diffDays = Math.round(
+    (startOfDay(new Date()).getTime() - startOfDay(lastStudy).getTime()) / 86_400_000
+  );
+  if (diffDays === 0) return previousStreak;
+  if (diffDays === 1) return previousStreak + 1;
+  return 1;
+}
+
 export async function finishQuiz(ownerId: string, quizId: string) {
   const quiz = await quizRepository.findActiveWithQuestions(quizId);
   if (!quiz || quiz.ownerId !== ownerId) throw new NotFoundError("Quiz not found");
@@ -252,12 +276,16 @@ export async function finishQuiz(ownerId: string, quizId: string) {
     0
   );
 
+  const progress = await userProgressRepository.find(ownerId, SOURCE_LANG);
+  const streak = nextStreak(progress?.streak ?? 0, progress?.lastStudy ?? null);
+
   await quizRepository.completeAndAwardXp({
     quizId,
     score,
     xpGained,
     userId: ownerId,
     language: SOURCE_LANG,
+    streak,
   });
 
   return { score, total: quiz.total, xpGained };

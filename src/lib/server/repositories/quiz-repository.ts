@@ -89,6 +89,7 @@ export interface QuizRepository {
     xpGained: number;
     userId: string;
     language: string;
+    streak: number;
   }): Promise<void>;
   findHistory(ownerId: string, limit: number): Promise<QuizHistoryRow[]>;
   countCompleted(ownerId: string): Promise<number>;
@@ -197,6 +198,7 @@ export class PrismaQuizRepository implements QuizRepository {
     xpGained: number;
     userId: string;
     language: string;
+    streak: number;
   }): Promise<void> {
     await prisma.$transaction([
       prisma.quiz.update({
@@ -205,12 +207,12 @@ export class PrismaQuizRepository implements QuizRepository {
       }),
       prisma.userProgress.upsert({
         where: { userId_language: { userId: input.userId, language: input.language } },
-        update: { xp: { increment: input.xpGained }, lastStudy: new Date() },
+        update: { xp: { increment: input.xpGained }, lastStudy: new Date(), streak: input.streak },
         create: {
           userId: input.userId,
           language: input.language,
           xp: input.xpGained,
-          streak: 1,
+          streak: input.streak,
           lastStudy: new Date(),
         },
       }),
