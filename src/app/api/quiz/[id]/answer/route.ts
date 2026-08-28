@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { requireAuth, parseBody } from "@/lib/server/http";
+import { requireAuth, parseBody, toErrorResponse } from "@/lib/server/http";
 import { answerQuestion } from "@/lib/server/quiz";
 import z from "zod";
 
@@ -18,7 +18,7 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
       const result = await answerQuestion(authedRequest.userId, id, parsed.questionId, parsed.selected);
       return NextResponse.json(result);
     } catch (err) {
-      return NextResponse.json({ error: err instanceof Error ? err.message : "Failed" }, { status: 400 });
+      return toErrorResponse(err);
     }
   });
 }

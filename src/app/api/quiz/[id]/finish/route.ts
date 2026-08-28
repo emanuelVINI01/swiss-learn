@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { requireAuth } from "@/lib/server/http";
+import { requireAuth, toErrorResponse } from "@/lib/server/http";
 import { finishQuiz } from "@/lib/server/quiz";
 
 export async function POST(request: Request, { params }: { params: Promise<{ id: string }> }) {
@@ -9,7 +9,7 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
       const result = await finishQuiz(authedRequest.userId, id);
       return NextResponse.json(result);
     } catch (err) {
-      return NextResponse.json({ error: err instanceof Error ? err.message : "Failed" }, { status: 400 });
+      return toErrorResponse(err);
     }
   });
 }

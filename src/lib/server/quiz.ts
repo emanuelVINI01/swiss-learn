@@ -1,4 +1,5 @@
 import "server-only";
+import { NotFoundError, ConflictError, InvalidRequestError } from "./errors";
 import { SOURCE_LANG, TARGET_LANGS, isTargetLang, shuffle, type TargetLang } from "./shared";
 import { buildPhraseFillQuestion, buildPhraseMeaningQuestion } from "./phrases";
 import {
@@ -220,13 +221,13 @@ export async function answerQuestion(
   selected: string
 ) {
   const quiz = await quizRepository.findActiveWithQuestions(quizId);
-  if (!quiz || quiz.ownerId !== ownerId) throw new Error("Quiz not found");
-  if (quiz.status !== "active") throw new Error("Quiz is not active");
+  if (!quiz || quiz.ownerId !== ownerId) throw new NotFoundError("Quiz not found");
+  if (quiz.status !== "active") throw new ConflictError("Quiz is not active");
 
   const question = quiz.questions.find((q) => q.id === questionId);
-  if (!question) throw new Error("Question not found");
-  if (question.selected !== null) throw new Error("Question already answered");
-  if (!question.options.includes(selected)) throw new Error("Invalid option");
+  if (!question) throw new NotFoundError("Question not found");
+  if (question.selected !== null) throw new ConflictError("Question already answered");
+  if (!question.options.includes(selected)) throw new InvalidRequestError("Invalid option");
 
   const correct = selected === question.correctAnswer;
   await quizRepository.recordAnswer(questionId, selected, correct);
@@ -236,11 +237,11 @@ export async function answerQuestion(
 
 export async function finishQuiz(ownerId: string, quizId: string) {
   const quiz = await quizRepository.findActiveWithQuestions(quizId);
-  if (!quiz || quiz.ownerId !== ownerId) throw new Error("Quiz not found");
-  if (quiz.status !== "active") throw new Error("Quiz is not active");
+  if (!quiz || quiz.ownerId !== ownerId) throw new NotFoundError("Quiz not found");
+  if (quiz.status !== "active") throw new ConflictError("Quiz is not active");
 
   const answeredCount = quiz.questions.filter((q) => q.selected !== null).length;
-  if (answeredCount < quiz.total) throw new Error("Quiz is not fully answered yet");
+  if (answeredCount < quiz.total) throw new ConflictError("Quiz is not fully answered yet");
 
   const correctQuestions = quiz.questions.filter((q) => q.correct);
   const score = correctQuestions.length;

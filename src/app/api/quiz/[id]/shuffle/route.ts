@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { requireAuth, parseBody } from "@/lib/server/http";
+import { requireAuth, parseBody, toErrorResponse } from "@/lib/server/http";
 import { isTargetLang, shuffleQuiz } from "@/lib/server/quiz";
 import z from "zod";
 
@@ -15,7 +15,7 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
       const quiz = await shuffleQuiz(authedRequest.userId, id, parsed.lang);
       return NextResponse.json({ quiz });
     } catch (err) {
-      return NextResponse.json({ error: err instanceof Error ? err.message : "Failed" }, { status: 400 });
+      return toErrorResponse(err);
     }
   });
 }
