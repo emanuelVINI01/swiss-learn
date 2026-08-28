@@ -175,5 +175,26 @@
   "footer": {
     "tagline": "Learn Swiss German, one word at a time.",
     "rights": "All rights reserved."
+  },
+  "categories": {
+    "animals": "Animals",
+    "basics": "Basics",
+    "body": "Body",
+    "clothing": "Clothing",
+    "colors": "Colors",
+    "daily-life": "Daily Life",
+    "family": "Family",
+    "feelings": "Feelings",
+    "food": "Food",
+    "greetings": "Greetings",
+    "nature": "Nature",
+    "numbers": "Numbers",
+    "objects": "Objects",
+    "places": "Places",
+    "questions": "Questions",
+    "time": "Time",
+    "transport": "Transport",
+    "verbs": "Verbs",
+    "general": "General"
   }
 }

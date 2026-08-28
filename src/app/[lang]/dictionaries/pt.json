@@ -175,5 +175,26 @@
   "footer": {
     "tagline": "Aprenda suíço-alemão, uma palavra de cada vez.",
     "rights": "Todos os direitos reservados."
+  },
+  "categories": {
+    "animals": "Animais",
+    "basics": "Básico",
+    "body": "Corpo",
+    "clothing": "Roupas",
+    "colors": "Cores",
+    "daily-life": "Dia a dia",
+    "family": "Família",
+    "feelings": "Sentimentos",
+    "food": "Comida",
+    "greetings": "Cumprimentos",
+    "nature": "Natureza",
+    "numbers": "Números",
+    "objects": "Objetos",
+    "places": "Lugares",
+    "questions": "Perguntas",
+    "time": "Tempo",
+    "transport": "Transporte",
+    "verbs": "Verbos",
+    "general": "Geral"
   }
 }

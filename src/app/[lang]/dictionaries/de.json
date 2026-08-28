@@ -175,5 +175,26 @@
   "footer": {
     "tagline": "Schweizerdeutsch lernen, ein Wort nach dem anderen.",
     "rights": "Alle Rechte vorbehalten."
+  },
+  "categories": {
+    "animals": "Tiere",
+    "basics": "Grundlagen",
+    "body": "Körper",
+    "clothing": "Kleidung",
+    "colors": "Farben",
+    "daily-life": "Alltag",
+    "family": "Familie",
+    "feelings": "Gefühle",
+    "food": "Essen",
+    "greetings": "Begrüßungen",
+    "nature": "Natur",
+    "numbers": "Zahlen",
+    "objects": "Gegenstände",
+    "places": "Orte",
+    "questions": "Fragen",
+    "time": "Zeit",
+    "transport": "Verkehr",
+    "verbs": "Verben",
+    "general": "Allgemein"
   }
 }

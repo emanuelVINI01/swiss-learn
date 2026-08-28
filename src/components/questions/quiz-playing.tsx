@@ -153,9 +153,11 @@ export default function QuizPlaying({
                     <Eye size={16} />
                     {showCategory ? d.hideCategory : d.showCategory}
                   </button>
-                  <p className={`text-sm text-[var(--fg-muted)] ${showCategory ? "visible" : "invisible"}`}>
-                    [{question.category}]
-                  </p>
+                  <span
+                    className={`inline-flex items-center rounded-full border border-[var(--accent-muted)] bg-[var(--accent-muted)] px-3 py-1 text-xs font-semibold uppercase tracking-widest text-[var(--accent)] ${showCategory ? "visible" : "invisible"}`}
+                  >
+                    {dict.categories?.[question.category] ?? question.category}
+                  </span>
                 </div>
               </div>
 
