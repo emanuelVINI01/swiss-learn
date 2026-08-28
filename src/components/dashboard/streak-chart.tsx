@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { motion } from "framer-motion";
 import { Flame } from "lucide-react";
 
@@ -36,6 +36,14 @@ const WEEKDAY_LABEL_ROWS = [1, 3, 5];
 
 export default function StreakChart({ dict, lang, days, streak }: Props) {
   const d = dict.dashboard;
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  // The grid is wider than the viewport on mobile; open it scrolled to the
+  // most recent days (right edge) instead of the oldest ones.
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (el) el.scrollLeft = el.scrollWidth;
+  }, [days]);
 
   const weeks = useMemo<(StreakDay | null)[][]>(() => {
     if (days.length === 0) return [];
@@ -87,7 +95,7 @@ export default function StreakChart({ dict, lang, days, streak }: Props) {
         </p>
       </div>
 
-      <div className="overflow-x-auto">
+      <div ref={scrollRef} className="overflow-x-auto">
         <div className="inline-flex flex-col gap-1">
           <div className="flex gap-1 pl-7">
             {weeks.map((_, i) => (
@@ -97,7 +105,7 @@ export default function StreakChart({ dict, lang, days, streak }: Props) {
             ))}
           </div>
           <div className="flex gap-1">
-            <div className="flex w-6 shrink-0 flex-col gap-1">
+            <div className="sticky left-0 z-10 flex w-6 shrink-0 flex-col gap-1 bg-[var(--surface)]">
               {Array.from({ length: 7 }, (_, row) => (
                 <div key={row} className="h-3 text-[10px] leading-3 text-[var(--fg-muted)]">
                   {WEEKDAY_LABEL_ROWS.includes(row) ? weekdayLabel(row) : ""}
