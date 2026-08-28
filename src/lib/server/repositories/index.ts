@@ -1,4 +1,4 @@
-export { wordRepository, type WordRepository, type WordRow } from "./word-repository";
+export { wordRepository, type WordRepository, type WordRow, type WordTextEntry } from "./word-repository";
 export { phraseRepository, type PhraseRepository, type PhraseRow } from "./phrase-repository";
 export {
   quizRepository,
