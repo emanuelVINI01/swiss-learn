@@ -1,8 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Zap, Trophy, Target, BookOpen } from "lucide-react";
 import AppShell from "@/components/ui/app-shell";
-import { EmojiIcon } from "@/components/ui/emoji-icon";
 import SkillsSection, { type SkillId, type SkillStats } from "@/components/dashboard/skills-section";
 import StreakChart, { type StreakDay } from "@/components/dashboard/streak-chart";
 
@@ -21,10 +21,10 @@ export default function ProfileClient({ dict, lang, user, xp, streak, stats, ski
   const d = dict.dashboard;
 
   const statCards = [
-    { emoji: "⚡", label: d.xp, value: xp },
-    { emoji: "🏆", label: d.level, value: Math.floor(xp / 100) + 1 },
-    { emoji: "🎯", label: d.accuracy, value: `${stats.accuracy}%` },
-    { emoji: "📚", label: d.totalQuizzes, value: stats.totalQuizzes },
+    { Icon: Zap, label: d.xp, value: xp },
+    { Icon: Trophy, label: d.level, value: Math.floor(xp / 100) + 1 },
+    { Icon: Target, label: d.accuracy, value: `${stats.accuracy}%` },
+    { Icon: BookOpen, label: d.totalQuizzes, value: stats.totalQuizzes },
   ];
 
   return (
@@ -60,7 +60,7 @@ export default function ProfileClient({ dict, lang, user, xp, streak, stats, ski
                 className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-4"
               >
                 <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--accent-muted)]">
-                  <EmojiIcon emoji={card.emoji} size={20} />
+                  <card.Icon size={20} className="text-[var(--accent)]" />
                 </div>
                 <p className="text-2xl font-extrabold text-[var(--fg)]">{card.value}</p>
                 <p className="text-xs text-[var(--fg-muted)] mt-0.5">{card.label}</p>

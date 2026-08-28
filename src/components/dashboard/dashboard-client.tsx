@@ -3,7 +3,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { type User } from "next-auth";
-import { BookOpen, ArrowRight, Calendar, Share2, Check } from "lucide-react";
+import { BookOpen, ArrowRight, Calendar, Share2, Check, Zap, Flame, Target } from "lucide-react";
 import AppShell from "@/components/ui/app-shell";
 import { Flag } from "@/components/ui/flag";
 import { EmojiIcon } from "@/components/ui/emoji-icon";
@@ -70,28 +70,32 @@ export default function DashboardClient({
 
   const statCards = [
     {
-      emoji: "⚡",
+      Icon: Zap,
       label: dict.dashboard.xp,
       value: progress.xp,
       bg: "var(--accent-muted)",
+      color: "var(--accent)",
     },
     {
-      emoji: "🔥",
+      Icon: Flame,
       label: dict.dashboard.streak,
       value: `${progress.streak}`,
       bg: "rgba(249, 115, 22, 0.12)",
+      color: "#f97316",
     },
     {
-      emoji: "🎯",
+      Icon: Target,
       label: dict.dashboard.accuracy,
       value: `${stats.accuracy}%`,
       bg: "var(--success-muted)",
+      color: "var(--success)",
     },
     {
-      emoji: "📚",
+      Icon: BookOpen,
       label: dict.dashboard.totalQuizzes,
       value: stats.totalQuizzes,
       bg: "var(--swiss-red-muted)",
+      color: "var(--swiss-red)",
     },
   ];
 
@@ -193,7 +197,7 @@ export default function DashboardClient({
                     className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl"
                     style={{ backgroundColor: card.bg }}
                   >
-                    <EmojiIcon emoji={card.emoji} size={20} />
+                    <card.Icon size={20} style={{ color: card.color }} />
                   </div>
                   <p className="text-2xl font-extrabold text-[var(--fg)]">{card.value}</p>
                   <p className="text-xs text-[var(--fg-muted)] mt-0.5">{card.label}</p>
