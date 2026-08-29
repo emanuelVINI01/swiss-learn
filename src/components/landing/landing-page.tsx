@@ -8,7 +8,6 @@ import { SiGithub } from "react-icons/si";
 import Navbar from "@/components/ui/navbar";
 import { SwissCrossMark } from "@/components/ui/logo";
 import { Flag } from "@/components/ui/flag";
-import { EmojiIcon } from "@/components/ui/emoji-icon";
 import { MountainIllustration } from "@/components/landing/mountain-illustration";
 import { playHover, playClick, playSuccess, playError } from "@/lib/audio";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
@@ -61,36 +60,37 @@ export default function LandingPage({ dict, lang, session }: Props) {
 
       {/* ─── Hero ─── */}
       <section className="relative flex flex-col items-center justify-center px-4 py-24 sm:py-32 overflow-hidden">
-        {/* Mountain skyline with vivid colors */}
+        {/* Mountain skyline */}
         <MountainIllustration className="absolute inset-x-0 bottom-0 h-56 w-full sm:h-72 pointer-events-none" />
-        
-        <div
-          aria-hidden
-          className="absolute -top-40 left-1/2 -translate-x-1/2 h-[420px] w-[420px] rounded-full opacity-[0.1] blur-3xl pointer-events-none"
-          style={{ background: "radial-gradient(circle, var(--accent), transparent 70%)" }}
-        />
 
-        <Section className="relative z-10 mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 lg:grid-cols-2">
-          
-          {/* Left Text */}
+        {/* Typographic background letter */}
+        <span
+          aria-hidden
+          className="graphic-letter pointer-events-none select-none absolute right-0 top-0 translate-x-1/4 -translate-y-1/4"
+        >
+          G
+        </span>
+
+        <Section className="relative z-10 mx-auto grid max-w-6xl grid-cols-1 items-center gap-12">
+
+          {/* Text */}
           <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
             <motion.div variants={fadeUp} className="mb-6">
-              <span className="inline-flex items-center gap-2 rounded-full border border-[var(--accent-muted)] bg-[var(--accent-muted)] px-4 py-1.5 text-sm font-medium text-[var(--accent)]">
-                <EmojiIcon emoji="⚡" size={14} />
+              <span className="inline-flex items-center gap-2 border border-[var(--accent-muted)] bg-[var(--accent-muted)] px-4 py-1.5 text-xs font-[family-name:var(--font-body)] font-medium uppercase tracking-[0.1em] text-[var(--accent)]">
                 {d.hero.badge}
               </span>
             </motion.div>
 
-            <motion.div variants={fadeUp} className="mb-6 animate-float">
+            <motion.div variants={fadeUp} className="mb-6">
               <SwissCrossMark size={64} rounded={16} />
             </motion.div>
 
-            <motion.h1 variants={fadeUp} className="text-4xl font-extrabold sm:text-5xl md:text-6xl text-[var(--fg)] leading-tight">
+            <motion.h1 variants={fadeUp} className="text-4xl font-extrabold sm:text-5xl md:text-6xl text-[var(--fg)] font-[family-name:var(--font-display)] tracking-tight leading-none">
               {d.hero.title}{" "}
               <span className="gradient-text">{d.hero.titleAccent}</span>
             </motion.h1>
 
-            <motion.p variants={fadeUp} className="mt-6 max-w-lg text-lg text-[var(--fg-muted)] sm:text-xl leading-relaxed">
+            <motion.p variants={fadeUp} className="mt-6 max-w-lg text-lg text-[var(--fg-muted)] sm:text-xl leading-relaxed font-[family-name:var(--font-body)]">
               {d.hero.subtitle}
             </motion.p>
 
@@ -100,7 +100,7 @@ export default function LandingPage({ dict, lang, session }: Props) {
                   href={`/${lang}/dashboard`}
                   onMouseEnter={playHover}
                   onClick={playClick}
-                  className="group flex items-center gap-2 rounded-xl bg-[var(--accent)] px-6 py-3 text-base font-bold text-white hover:bg-[var(--accent-hover)] transition-all hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-[var(--accent-muted)]"
+                  className="group flex items-center gap-2 border-2 border-[var(--accent)] bg-[var(--accent)] px-6 py-3 text-sm font-bold font-[family-name:var(--font-display)] text-white hover:bg-transparent hover:text-[var(--accent)] transition-colors duration-100"
                 >
                   {d.nav.dashboard}
                   <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
@@ -111,7 +111,7 @@ export default function LandingPage({ dict, lang, session }: Props) {
                     href={`/${lang}/signin`}
                     onMouseEnter={playHover}
                     onClick={playClick}
-                    className="group flex items-center gap-2 rounded-xl bg-[var(--accent)] px-6 py-3 text-base font-bold text-white hover:bg-[var(--accent-hover)] transition-all hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-[var(--accent-muted)]"
+                    className="group flex items-center gap-2 border-2 border-[var(--accent)] bg-[var(--accent)] px-6 py-3 text-sm font-bold font-[family-name:var(--font-display)] text-white hover:bg-transparent hover:text-[var(--accent)] transition-colors duration-100"
                   >
                     <SiGithub size={18} />
                     {d.hero.ctaSignin}
@@ -121,7 +121,7 @@ export default function LandingPage({ dict, lang, session }: Props) {
                     href={`/${lang}/signin`}
                     onMouseEnter={playHover}
                     onClick={playClick}
-                    className="rounded-xl border border-[var(--border)] bg-[var(--surface)] px-6 py-3 text-base font-semibold text-[var(--fg-muted)] hover:bg-[var(--surface-2)] hover:text-[var(--fg)] transition-all"
+                    className="border-2 border-[var(--border)] bg-[var(--surface)] px-6 py-3 text-sm font-[family-name:var(--font-body)] font-medium text-[var(--fg-muted)] hover:border-[var(--fg)] hover:text-[var(--fg)] transition-colors duration-100"
                   >
                     {d.hero.cta}
                   </Link>
@@ -141,36 +141,24 @@ export default function LandingPage({ dict, lang, session }: Props) {
             </motion.div>
           </div>
 
-          {/* Right UnDraw Illustration */}
-          <motion.div 
-            variants={fadeUp}
-            className="flex justify-center lg:justify-end"
-          >
-            <div className="relative w-full max-w-md xl:max-w-lg animate-float-slow">
-              <img src="/illustrations/hiking.svg" alt="Hiking Swiss Alps" className="w-full h-auto drop-shadow-2xl dark:hidden" />
-              <img src="/illustrations/hiking-dark.svg" alt="Hiking Swiss Alps" className="w-full h-auto drop-shadow-2xl hidden dark:block" />
-            </div>
-          </motion.div>
-
         </Section>
-        
-        {/* Stats placed below */}
+
+        {/* Stats bar */}
         <Section className="relative z-10 mx-auto w-full max-w-5xl mt-16 px-4 pb-8">
-          <motion.div 
-            variants={fadeUp} 
-            className="flex flex-wrap items-center justify-center gap-10 sm:gap-16 rounded-3xl border border-[var(--border)] bg-[var(--surface)]/70 backdrop-blur-xl p-8 shadow-2xl shadow-[var(--accent-muted)]/20"
+          <motion.div
+            variants={fadeUp}
+            className="flex flex-wrap items-center justify-center gap-10 sm:gap-16 border-2 border-[var(--border)] bg-[var(--surface)] p-8"
           >
             {[
-              { emoji: "📚", value: "500+", label: d.hero.stats.words },
-              { emoji: "⭐", value: "98%", label: d.hero.stats.accuracy },
-              { emoji: "👥", value: "1k+", label: d.hero.stats.learners },
+              { value: "500+", label: d.hero.stats.words },
+              { value: "98%", label: d.hero.stats.accuracy },
+              { value: "1k+", label: d.hero.stats.learners },
             ].map((stat) => (
               <div key={stat.label} className="flex flex-col items-center gap-1.5">
-                <div className="flex items-center gap-2 text-[var(--accent)]">
-                  <EmojiIcon emoji={stat.emoji} size={24} />
-                  <span className="text-3xl font-extrabold text-[var(--fg)]">{stat.value}</span>
-                </div>
-                <span className="text-xs font-bold text-[var(--fg-muted)] uppercase tracking-widest">
+                <span className="text-3xl font-extrabold font-[family-name:var(--font-display)] text-[var(--fg)]">
+                  {stat.value}
+                </span>
+                <span className="text-xs font-bold font-[family-name:var(--font-body)] text-[var(--fg-muted)] uppercase tracking-widest">
                   {stat.label}
                 </span>
               </div>
@@ -181,27 +169,18 @@ export default function LandingPage({ dict, lang, session }: Props) {
 
       {/* ─── Learning Section ─── */}
       <section className="relative px-4 py-20 sm:py-28 bg-[var(--bg-secondary)] overflow-hidden">
-        {/* Decorative Glow */}
-        <div className="absolute top-1/2 -left-32 h-[500px] w-[500px] -translate-y-1/2 rounded-full bg-[var(--accent)] opacity-[0.06] blur-[120px] pointer-events-none" />
-        
         <div className="relative z-10 mx-auto max-w-6xl">
-          <Section className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
-            <motion.div variants={fadeUp} className="order-2 lg:order-1 flex justify-center lg:justify-start">
-              <div className="relative w-full max-w-md xl:max-w-lg animate-float-slow">
-                <img src="/illustrations/online-learning.svg" alt="Online Learning" className="w-full h-auto drop-shadow-2xl dark:hidden" />
-                <img src="/illustrations/online-learning-dark.svg" alt="Online Learning" className="w-full h-auto drop-shadow-2xl hidden dark:block" />
-              </div>
-            </motion.div>
-            <div className="order-1 lg:order-2 flex flex-col items-center text-center lg:items-start lg:text-left">
+          <Section className="grid grid-cols-1 items-center gap-12">
+            <div className="flex flex-col items-center text-center lg:items-start lg:text-left max-w-2xl mx-auto lg:mx-0">
               <motion.div variants={fadeUp} className="mb-4">
-                <span className="inline-flex items-center gap-2 rounded-full border border-[var(--accent-muted)] bg-[var(--accent-muted)] px-3 py-1 text-xs font-semibold uppercase tracking-widest text-[var(--accent)]">
+                <span className="inline-flex items-center gap-2 border border-[var(--accent-muted)] bg-[var(--accent-muted)] px-3 py-1 text-xs font-semibold font-[family-name:var(--font-body)] uppercase tracking-[0.1em] text-[var(--accent)]">
                   {d.learningSection?.badge || "Pace Yourself"}
                 </span>
               </motion.div>
-              <motion.h2 variants={fadeUp} className="mb-6 text-3xl font-extrabold sm:text-4xl text-[var(--fg)]">
+              <motion.h2 variants={fadeUp} className="mb-6 text-3xl font-extrabold sm:text-4xl text-[var(--fg)] font-[family-name:var(--font-display)] tracking-tight leading-none">
                 {d.learningSection?.title || "Learn at your own rhythm"}
               </motion.h2>
-              <motion.p variants={fadeUp} className="text-lg text-[var(--fg-muted)] leading-relaxed">
+              <motion.p variants={fadeUp} className="text-lg text-[var(--fg-muted)] leading-relaxed font-[family-name:var(--font-body)]">
                 {d.learningSection?.description || "Our interactive modules adapt to your learning speed. No rush, no pressure—just consistent progress tailored for your daily routine."}
               </motion.p>
             </div>
@@ -211,30 +190,21 @@ export default function LandingPage({ dict, lang, session }: Props) {
 
       {/* ─── Progress Section ─── */}
       <section className="relative px-4 py-20 sm:py-28 overflow-hidden">
-        {/* Decorative Glow */}
-        <div className="absolute top-1/2 -right-32 h-[500px] w-[500px] -translate-y-1/2 rounded-full bg-[var(--swiss-red)] opacity-[0.06] blur-[120px] pointer-events-none" />
-        
         <div className="relative z-10 mx-auto max-w-6xl">
-          <Section className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
-            <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
+          <Section className="grid grid-cols-1 items-center gap-12">
+            <div className="flex flex-col items-center text-center lg:items-start lg:text-left max-w-2xl mx-auto lg:mx-0">
               <motion.div variants={fadeUp} className="mb-4">
-                <span className="inline-flex items-center gap-2 rounded-full border border-[var(--accent-muted)] bg-[var(--accent-muted)] px-3 py-1 text-xs font-semibold uppercase tracking-widest text-[var(--accent)]">
+                <span className="inline-flex items-center gap-2 border border-[var(--accent-muted)] bg-[var(--accent-muted)] px-3 py-1 text-xs font-semibold font-[family-name:var(--font-body)] uppercase tracking-[0.1em] text-[var(--accent)]">
                   {d.progressSection?.badge || "Track Success"}
                 </span>
               </motion.div>
-              <motion.h2 variants={fadeUp} className="mb-6 text-3xl font-extrabold sm:text-4xl text-[var(--fg)]">
+              <motion.h2 variants={fadeUp} className="mb-6 text-3xl font-extrabold sm:text-4xl text-[var(--fg)] font-[family-name:var(--font-display)] tracking-tight leading-none">
                 {d.progressSection?.title || "Celebrate your victories"}
               </motion.h2>
-              <motion.p variants={fadeUp} className="text-lg text-[var(--fg-muted)] leading-relaxed">
+              <motion.p variants={fadeUp} className="text-lg text-[var(--fg-muted)] leading-relaxed font-[family-name:var(--font-body)]">
                 {d.progressSection?.description || "Visualize your journey as you master new vocabulary. Every word learned brings you one step closer to fluency and confidence."}
               </motion.p>
             </div>
-            <motion.div variants={fadeUp} className="flex justify-center lg:justify-end">
-              <div className="relative w-full max-w-md xl:max-w-lg animate-float-slow">
-                <img src="/illustrations/celebrating.svg" alt="Celebrating Success" className="w-full h-auto drop-shadow-2xl dark:hidden" />
-                <img src="/illustrations/celebrating-dark.svg" alt="Celebrating Success" className="w-full h-auto drop-shadow-2xl hidden dark:block" />
-              </div>
-            </motion.div>
           </Section>
         </div>
       </section>
@@ -274,21 +244,22 @@ export default function LandingPage({ dict, lang, session }: Props) {
             {/* Mini quiz card */}
             <motion.div
               variants={fadeUp}
-              className="flex-1 w-full rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6 shadow-xl"
+              className="flex-1 w-full border-2 border-[var(--fg)] bg-[var(--surface)] p-6"
+              style={{ boxShadow: "var(--shadow-editorial)" }}
             >
               <div className="mb-4 flex items-center justify-between">
                 <span className="text-xs font-semibold uppercase tracking-wider text-[var(--fg-muted)]">
                   {d.demo?.exampleQuestion || "Example Question"}
                 </span>
-                <span className="rounded-full bg-[var(--accent-muted)] px-2 py-0.5 text-xs font-semibold text-[var(--accent)]">
+                <span className="bg-[var(--accent-muted)] px-2 py-0.5 text-xs font-semibold text-[var(--accent)]">
                   1 / 10
                 </span>
               </div>
-              <div className="mb-6 rounded-xl bg-[var(--bg-secondary)] p-4 text-center">
+              <div className="mb-6 border border-[var(--border)] bg-[var(--bg-secondary)] p-4 text-center">
                 <p className="flex items-center justify-center gap-1.5 text-xs text-[var(--fg-muted)] mb-1">
                   <Flag code="ch" size={12} /> Swiss German
                 </p>
-                <p className="text-3xl font-extrabold text-[var(--fg)]">Grüezi</p>
+                <p className="text-3xl font-extrabold font-[family-name:var(--font-display)] text-[var(--fg)]">Grüezi</p>
               </div>
               <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-[var(--fg-muted)]">
                 {d.questions.choose}
@@ -302,14 +273,13 @@ export default function LandingPage({ dict, lang, session }: Props) {
                 ].map((opt) => (
                   <motion.button
                     key={opt.text}
-                    whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.97 }}
                     onMouseEnter={playHover}
                     onClick={() => { if (opt.correct) playSuccess(); else playError(); }}
-                    className={`rounded-xl border px-3 py-2.5 text-left text-sm font-medium transition-all ${
+                    className={`border-2 px-3 py-2.5 text-left text-sm font-medium transition-all ${
                       opt.correct
-                        ? "border-[var(--success)] bg-[var(--success-muted)] text-[var(--success)]"
-                        : "border-[var(--border)] bg-[var(--surface-2)] text-[var(--fg-muted)] hover:border-[var(--accent)] hover:bg-[var(--accent-muted)]"
+                        ? "border-[var(--success)] bg-[var(--surface)] text-[var(--success)] font-[family-name:var(--font-body)]"
+                        : "border-[var(--border)] bg-[var(--surface)] text-[var(--fg-muted)] hover:border-[var(--fg)] hover:text-[var(--fg)] font-[family-name:var(--font-body)]"
                     }`}
                   >
                     {opt.text}
@@ -327,25 +297,18 @@ export default function LandingPage({ dict, lang, session }: Props) {
           <Section>
             <motion.div
               variants={fadeUp}
-              className="rounded-3xl border border-[var(--accent-muted)] bg-[var(--surface)] p-10 lg:p-16 relative overflow-hidden"
-              style={{ boxShadow: `0 20px 80px color-mix(in srgb, var(--accent) 20%, transparent)` }}
+              className="border-2 border-[var(--fg)] bg-[var(--surface)] p-10 lg:p-16 relative overflow-hidden"
+              style={{ boxShadow: "var(--shadow-editorial)" }}
             >
-              <div className="absolute inset-0 bg-gradient-to-tr from-[var(--accent)]/10 via-transparent to-[var(--swiss-red)]/10 pointer-events-none" />
-              <motion.div 
-                animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
-                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-[var(--accent)] blur-[100px] pointer-events-none" 
-              />
-              
-              <div className="relative z-10 grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
+              <div className="relative z-10 grid grid-cols-1 items-center gap-12">
                 <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
                   <div className="mb-6 flex justify-center lg:justify-start">
                     <SwissCrossMark size={56} rounded={14} />
                   </div>
-                  <h2 className="mb-4 text-3xl font-extrabold sm:text-4xl text-[var(--fg)]">
+                  <h2 className="mb-4 text-3xl font-extrabold sm:text-4xl text-[var(--fg)] font-[family-name:var(--font-display)] tracking-tight leading-none">
                     {d.ctaBanner?.title || "Ready to learn Swiss German?"}
                   </h2>
-                  <p className="mb-8 text-lg text-[var(--fg-muted)]">
+                  <p className="mb-8 text-lg text-[var(--fg-muted)] font-[family-name:var(--font-body)]">
                     {d.ctaBanner?.subtitle || "Join thousands of learners. Sign in with GitHub and start your journey today."}
                   </p>
                   <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 w-full">
@@ -354,7 +317,7 @@ export default function LandingPage({ dict, lang, session }: Props) {
                         href={`/${lang}/dashboard`}
                         onMouseEnter={playHover}
                         onClick={playClick}
-                        className="group inline-flex items-center gap-2 rounded-xl bg-[var(--accent)] px-8 py-3.5 text-base font-bold text-white hover:bg-[var(--accent-hover)] transition-all hover:scale-[1.02] shadow-lg shadow-[var(--accent-muted)]"
+                        className="group inline-flex items-center gap-2 border-2 border-[var(--accent)] bg-[var(--accent)] px-6 py-3 text-sm font-bold font-[family-name:var(--font-display)] text-white hover:bg-transparent hover:text-[var(--accent)] transition-colors duration-100"
                       >
                         {d.nav.dashboard}
                         <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
@@ -364,7 +327,7 @@ export default function LandingPage({ dict, lang, session }: Props) {
                         href={`/${lang}/signin`}
                         onMouseEnter={playHover}
                         onClick={playClick}
-                        className="group inline-flex items-center gap-2 rounded-xl bg-[var(--accent)] px-8 py-3.5 text-base font-bold text-white hover:bg-[var(--accent-hover)] transition-all hover:scale-[1.02] shadow-lg shadow-[var(--accent-muted)]"
+                        className="group inline-flex items-center gap-2 border-2 border-[var(--accent)] bg-[var(--accent)] px-6 py-3 text-sm font-bold font-[family-name:var(--font-display)] text-white hover:bg-transparent hover:text-[var(--accent)] transition-colors duration-100"
                       >
                         <SiGithub size={18} />
                         {d.signin?.github || "Continue with GitHub"}
@@ -373,12 +336,6 @@ export default function LandingPage({ dict, lang, session }: Props) {
                     )}
                   </div>
                 </div>
-                <motion.div variants={fadeUp} className="flex justify-center lg:justify-end">
-                  <div className="relative w-full max-w-sm animate-float-slow">
-                    <img src="/illustrations/secure-login.svg" alt="Secure Login" className="w-full h-auto drop-shadow-2xl dark:hidden" />
-                    <img src="/illustrations/secure-login-dark.svg" alt="Secure Login" className="w-full h-auto drop-shadow-2xl hidden dark:block" />
-                  </div>
-                </motion.div>
               </div>
             </motion.div>
           </Section>
@@ -386,8 +343,8 @@ export default function LandingPage({ dict, lang, session }: Props) {
       </section>
 
       {/* ─── Footer ─── */}
-      <footer className="border-t border-[var(--border)] px-4 py-8">
-        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 text-sm text-[var(--fg-muted)] sm:flex-row">
+      <footer className="border-t-2 border-[var(--border)] px-4 py-8">
+        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 font-[family-name:var(--font-body)] text-xs text-[var(--fg-muted)] sm:flex-row">
           <div className="flex items-center gap-2">
             <SwissCrossMark size={24} rounded={6} />
             <span className="font-semibold text-[var(--fg)]">SwissLearn</span>
