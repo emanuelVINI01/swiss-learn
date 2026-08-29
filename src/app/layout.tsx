@@ -1,6 +1,28 @@
 import type { Metadata } from "next";
+import { Bricolage_Grotesque, DM_Mono, Fraunces } from "next/font/google";
 import { SITE_NAME, SITE_URL } from "@/lib/seo";
 import "./globals.css";
+
+const bricolage = Bricolage_Grotesque({
+  subsets: ["latin"],
+  weight: ["200", "400", "600", "800"],
+  variable: "--font-display",
+  display: "swap",
+});
+
+const dmMono = DM_Mono({
+  subsets: ["latin"],
+  weight: ["300", "400", "500"],
+  variable: "--font-body",
+  display: "swap",
+});
+
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  weight: ["700", "900"],
+  variable: "--font-accent",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -33,5 +55,13 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return children;
+  return (
+    <html
+      suppressHydrationWarning
+      className={`${bricolage.variable} ${dmMono.variable} ${fraunces.variable}`}
+    >
+      <head />
+      <body>{children}</body>
+    </html>
+  );
 }
