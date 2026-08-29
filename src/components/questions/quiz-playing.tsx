@@ -29,7 +29,7 @@ function PhrasePrompt({ text }: { text: string }) {
   return (
     <>
       {parts[0]}
-      <span className="mx-1 inline-block rounded-lg border-2 border-dashed border-[var(--accent)] px-3 text-[var(--accent)]">
+      <span className="mx-1 inline-block border-2 border-dashed border-[var(--accent)] px-3 text-[var(--accent)]">
         ____
       </span>
       {parts[1]}
@@ -58,13 +58,17 @@ export default function QuizPlaying({
   const progress = quiz.questions.length > 0 ? (current / quiz.questions.length) * 100 : 0;
   const isPhrase = question.questionType !== "word";
   const instruction = question.questionType === "phraseFill" ? d.choosePhraseFill : d.choose;
-  // phraseFill's audio-only mode is the "listen to the phrase and guess what
-  // was said" exercise — same blank-fill task, just presented by ear.
   const listenHint = question.questionType === "phraseFill" ? d.listenPromptFill : d.listenPrompt;
 
   return (
-    <main className="flex-1 px-4 py-8">
-      <div className="mx-auto w-full max-w-lg">
+    <main className="flex-1 px-4 py-6 sm:py-8">
+      {/*
+        Max-width expandido para acomodar o layout lado-a-lado.
+        No mobile: coluna. No sm+: flex-row com proporção 5/7.
+      */}
+      <div className="mx-auto w-full max-w-4xl">
+
+        {/* ── Topbar: back + shuffle ── */}
         <div className="mb-4 flex items-center justify-between">
           <button
             onMouseEnter={playHover}
@@ -80,27 +84,28 @@ export default function QuizPlaying({
             disabled={shuffling || finishing}
             title={d.shuffle}
             aria-label={d.shuffle}
-            className="flex h-8 w-8 items-center justify-center rounded-lg text-[var(--fg-muted)] hover:bg-[var(--surface-2)] hover:text-[var(--accent)] transition-colors disabled:opacity-50"
+            className="flex h-8 w-8 items-center justify-center text-[var(--fg-muted)] hover:bg-[var(--surface-2)] hover:text-[var(--accent)] transition-colors disabled:opacity-50"
           >
             <Shuffle size={16} className={shuffling ? "animate-spin" : ""} />
           </button>
         </div>
 
-        <div className="mb-6">
-          <div className="mb-2 flex items-center justify-between text-sm text-[var(--fg-muted)]">
+        {/* ── Progress bar ── */}
+        <div className="mb-5">
+          <div className="mb-2 flex items-center justify-between font-[family-name:var(--font-body)] text-xs text-[var(--fg-muted)]">
             <span>{d.title}</span>
             <span>{current + 1} / {quiz.questions.length}</span>
           </div>
-          <div className="h-2 w-full overflow-hidden rounded-full bg-[var(--bg-secondary)]">
+          <div className="h-[3px] w-full bg-[var(--bg-secondary)]">
             <motion.div
-              className="h-full rounded-full"
-              style={{ background: "linear-gradient(90deg, var(--accent), var(--swiss-red))" }}
+              className="h-full bg-[var(--accent)]"
               animate={{ width: `${progress + (1 / quiz.questions.length) * 100}%` }}
               transition={{ duration: 0.3 }}
             />
           </div>
         </div>
 
+        {/* ── Main quiz area ── */}
         <AnimatePresence mode="wait">
           <motion.div
             key={current}
@@ -109,123 +114,180 @@ export default function QuizPlaying({
             exit={{ opacity: 0, x: -40 }}
             transition={{ duration: 0.25 }}
           >
-            <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6 shadow-xl mb-4">
-              <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-[var(--fg-muted)]">
-                {dict.dashboard.swissGerman}
-              </p>
-              <div className="flex flex-col items-center justify-center py-8 text-center">
-                {promptMode === "audio" && question.audioUrl ? (
-                  <div className="mb-2 flex flex-col items-center gap-3">
-                    <WordAudioButton
-                      audioUrl={question.audioUrl}
-                      label={d.playAudio}
-                      autoPlay
-                      size="lg"
-                    />
-                    <p className="text-sm text-[var(--fg-muted)]">{listenHint}</p>
-                  </div>
-                ) : (
-                  <div className="mb-2 flex items-center justify-center gap-3">
-                    <motion.p
-                      key={question.prompt}
-                      initial={{ scale: 0.8, opacity: 0 }}
-                      animate={{ scale: 1, opacity: 1 }}
-                      className={`font-extrabold text-[var(--fg)] ${isPhrase ? "text-xl sm:text-2xl" : "text-5xl mb-2"}`}
-                    >
-                      {isPhrase ? <PhrasePrompt text={question.prompt} /> : question.prompt}
-                    </motion.p>
-                    {question.audioUrl && (
+            {/*
+              LAYOUT PRINCIPAL:
+              Mobile  → flex-col (prompt em cima, opções embaixo)
+              sm+     → flex-row (prompt à esquerda 5fr, opções à direita 7fr)
+              A borda envolve o conjunto inteiro para criar a "caixa editorial".
+            */}
+            <div
+              className="flex flex-col sm:flex-row border-2 border-[var(--border)] bg-[var(--surface)]"
+              style={{ boxShadow: "var(--shadow-md)" }}
+            >
+              {/* ── LEFT / TOP: Prompt ── */}
+              <div className="
+                flex flex-col justify-between
+                p-5 sm:p-8
+                border-b-2 sm:border-b-0 sm:border-r-2 border-[var(--border)]
+                sm:w-1/2 shrink-0
+              ">
+                {/* Label de idioma */}
+                <p className="font-[family-name:var(--font-body)] text-xs font-medium uppercase tracking-[0.12em] text-[var(--fg-muted)] mb-4">
+                  {dict.dashboard.swissGerman}
+                </p>
+
+                {/* Conteúdo do prompt */}
+                <div className="flex-1 flex flex-col items-start justify-center">
+                  {promptMode === "audio" && question.audioUrl ? (
+                    <div className="flex flex-col gap-3">
                       <WordAudioButton
                         audioUrl={question.audioUrl}
                         label={d.playAudio}
-                        autoPlay={promptMode === "both"}
-                        size="sm"
+                        autoPlay
+                        size="lg"
                       />
-                    )}
-                  </div>
-                )}
-                <div className="flex flex-col gap-2 items-center">
+                      <p className="font-[family-name:var(--font-body)] text-sm text-[var(--fg-muted)]">
+                        {listenHint}
+                      </p>
+                    </div>
+                  ) : (
+                    <div className="flex items-start gap-3 w-full">
+                      <motion.p
+                        key={question.prompt}
+                        initial={{ scale: 0.9, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        className={`font-extrabold text-[var(--fg)] break-words w-full ${
+                          isPhrase
+                            ? "text-lg sm:text-xl leading-snug font-[family-name:var(--font-body)]"
+                            : "font-[family-name:var(--font-display)] tracking-tight leading-none"
+                        }`}
+                        style={
+                          !isPhrase
+                            ? { fontSize: "clamp(32px, 5vw, 68px)" }
+                            : undefined
+                        }
+                      >
+                        {isPhrase ? <PhrasePrompt text={question.prompt} /> : question.prompt}
+                      </motion.p>
+                      {question.audioUrl && promptMode !== "audio" && (
+                        <div className="shrink-0 mt-1">
+                          <WordAudioButton
+                            audioUrl={question.audioUrl}
+                            label={d.playAudio}
+                            autoPlay={promptMode === "both"}
+                            size="sm"
+                          />
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
+
+                {/* Category toggle — na base do painel esquerdo */}
+                <div className="flex flex-col gap-2 items-start mt-5">
                   <button
                     onMouseEnter={playHover}
                     onClick={() => { onToggleCategory(); playClick(); }}
-                    className="flex items-center gap-1 rounded-xl bg-[var(--accent)] px-4 py-2 text-sm font-bold text-white hover:bg-[var(--accent-hover)] transition-all"
+                    className="flex items-center gap-1.5 border-2 border-[var(--accent)] bg-[var(--accent)] px-3 py-1.5 text-xs font-bold font-[family-name:var(--font-body)] text-white hover:bg-transparent hover:text-[var(--accent)] transition-colors duration-100"
                   >
-                    <Eye size={16} />
+                    <Eye size={13} />
                     {showCategory ? d.hideCategory : d.showCategory}
                   </button>
                   <span
-                    className={`inline-flex items-center rounded-full border border-[var(--accent-muted)] bg-[var(--accent-muted)] px-3 py-1 text-xs font-semibold uppercase tracking-widest text-[var(--accent)] ${showCategory ? "visible" : "invisible"}`}
+                    className={`inline-flex items-center border border-[var(--accent-muted)] bg-[var(--accent-muted)] px-2 py-0.5 font-[family-name:var(--font-body)] text-xs font-medium uppercase tracking-[0.1em] text-[var(--accent)] ${showCategory ? "visible" : "invisible"}`}
                   >
                     {dict.categories?.[question.category] ?? question.category}
                   </span>
                 </div>
               </div>
 
-              <p className="text-xs font-semibold uppercase tracking-wider text-[var(--fg-muted)]">
-                {instruction}
-              </p>
-            </div>
+              {/* ── RIGHT / BOTTOM: Answers ── */}
+              <div className="flex flex-col flex-1 min-w-0">
+                {/* Instruction label */}
+                <div className="px-5 py-3 border-b border-[var(--border)]">
+                  <p className="font-[family-name:var(--font-body)] text-xs font-medium uppercase tracking-[0.12em] text-[var(--fg-muted)]">
+                    {instruction}
+                  </p>
+                </div>
 
-            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-              {question.options.map((opt, i) => {
-                const isSelected = question.selected === opt;
-                const isCorrectOption = isAnswered && question.correctAnswer === opt;
-                let style = "border-[var(--border)] bg-[var(--surface)] text-[var(--fg)] hover:border-[var(--accent)] hover:bg-[var(--accent-muted)]";
-                if (isAnswered) {
-                  if (isCorrectOption) {
-                    style = "border-[var(--success)] bg-[var(--success-muted)] text-[var(--success)]";
-                  } else if (isSelected) {
-                    style = "border-[var(--error)] bg-[var(--error-muted)] text-[var(--error)]";
-                  } else {
-                    style = "border-[var(--border)] bg-[var(--surface)] text-[var(--fg-subtle)] opacity-60";
-                  }
-                }
+                {/*
+                  Opções: 2x2 grid no sm+, 1 coluna no mobile.
+                  gap-[2px] para o efeito de grelha compacta do design system.
+                */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-[2px] flex-1">
+                  {question.options.map((opt, i) => {
+                    const isSelected = question.selected === opt;
+                    const isCorrectOption = isAnswered && question.correctAnswer === opt;
 
-                return (
-                  <motion.button
-                    key={`${opt}-${i}`}
-                    whileHover={!isAnswered ? { scale: 1.02 } : {}}
-                    whileTap={!isAnswered ? { scale: 0.97 } : {}}
-                    onMouseEnter={() => !isAnswered && playHover()}
-                    onClick={() => onSelect(opt)}
-                    disabled={isAnswered || answering}
-                    className={`flex items-center justify-between gap-3 rounded-xl border px-4 py-3.5 text-left text-sm font-semibold transition-all disabled:cursor-not-allowed ${style}`}
-                  >
-                    <span>{opt}</span>
-                    {isAnswered && isCorrectOption && <CheckCircle2 size={18} className="shrink-0" />}
-                    {isAnswered && isSelected && !isCorrectOption && <XCircle size={18} className="shrink-0" />}
-                  </motion.button>
-                );
-              })}
-            </div>
-
-            <AnimatePresence>
-              {isAnswered && (
-                <motion.div
-                  initial={{ opacity: 0, y: 12 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"
-                >
-                  <div className={`flex items-center gap-2 text-sm font-semibold ${question.correct ? "text-[var(--success)]" : "text-[var(--error)]"}`}>
-                    {question.correct
-                      ? <><CheckCircle2 size={16} /> {d.correct}</>
-                      : <><XCircle size={16} /> {d.wrong} — {question.correctAnswer}</>
+                    let style =
+                      "border-[var(--border)] bg-[var(--surface)] text-[var(--fg)] hover:bg-[var(--bg-secondary)] hover:border-[var(--fg)]";
+                    if (isAnswered) {
+                      if (isCorrectOption) {
+                        style = "border-[var(--success)] bg-[var(--success-muted)] text-[var(--success)]";
+                      } else if (isSelected) {
+                        style = "border-[var(--error)] bg-[var(--surface)] text-[var(--fg-muted)] line-through opacity-70";
+                      } else {
+                        style = "border-[var(--border)] bg-[var(--surface)] text-[var(--fg-subtle)] opacity-40";
+                      }
                     }
-                  </div>
-                  <motion.button
-                    whileHover={{ scale: 1.03 }}
-                    whileTap={{ scale: 0.97 }}
-                    onMouseEnter={playHover}
-                    onClick={onNext}
-                    disabled={finishing}
-                    className="flex items-center justify-center gap-2 rounded-xl bg-[var(--accent)] px-4 py-2.5 text-sm font-bold text-white hover:bg-[var(--accent-hover)] transition-all disabled:opacity-60 w-full sm:w-auto"
-                  >
-                    {current < quiz.questions.length - 1 ? d.next : d.finish}
-                    <ArrowRight size={16} />
-                  </motion.button>
-                </motion.div>
-              )}
-            </AnimatePresence>
+
+                    return (
+                      <motion.button
+                        key={`${opt}-${i}`}
+                        onMouseEnter={() => !isAnswered && playHover()}
+                        onClick={() => onSelect(opt)}
+                        disabled={isAnswered || answering}
+                        className={`flex items-center justify-between gap-3 border px-4 py-4 sm:py-0 sm:min-h-[72px] text-left text-sm font-[family-name:var(--font-body)] transition-colors duration-100 disabled:cursor-not-allowed ${style}`}
+                      >
+                        {/* Número da opção — A B C D */}
+                        <span className="shrink-0 font-[family-name:var(--font-display)] font-bold text-[var(--fg-subtle)] text-xs mr-2">
+                          {String.fromCharCode(65 + i)}
+                        </span>
+                        <span className="flex-1">{opt}</span>
+                        {isAnswered && isCorrectOption && (
+                          <CheckCircle2 size={16} className="shrink-0" />
+                        )}
+                        {isAnswered && isSelected && !isCorrectOption && (
+                          <XCircle size={16} className="shrink-0" />
+                        )}
+                      </motion.button>
+                    );
+                  })}
+                </div>
+
+                {/* ── Feedback + Next (dentro do painel direito) ── */}
+                <AnimatePresence>
+                  {isAnswered && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between border-t-2 border-[var(--border)] px-4 py-3"
+                    >
+                      <div
+                        className={`flex items-center gap-2 font-[family-name:var(--font-body)] text-sm font-semibold ${
+                          question.correct ? "text-[var(--success)]" : "text-[var(--error)]"
+                        }`}
+                      >
+                        {question.correct ? (
+                          <><CheckCircle2 size={15} /> {d.correct}</>
+                        ) : (
+                          <><XCircle size={15} /> {d.wrong} — {question.correctAnswer}</>
+                        )}
+                      </div>
+                      <button
+                        onMouseEnter={playHover}
+                        onClick={onNext}
+                        disabled={finishing}
+                        className="flex items-center justify-center gap-2 border-2 border-[var(--accent)] bg-[var(--accent)] px-4 py-2 font-[family-name:var(--font-display)] text-sm font-bold text-white hover:bg-transparent hover:text-[var(--accent)] transition-colors duration-100 disabled:opacity-60 w-full sm:w-auto shrink-0"
+                      >
+                        {current < quiz.questions.length - 1 ? d.next : d.finish}
+                        <ArrowRight size={15} />
+                      </button>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            </div>
           </motion.div>
         </AnimatePresence>
       </div>

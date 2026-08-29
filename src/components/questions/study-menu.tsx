@@ -4,7 +4,6 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
 import { playHover, playClick } from "@/lib/audio";
-import { EmojiIcon } from "@/components/ui/emoji-icon";
 import type { QuestionType, QuizMode } from "./types";
 
 type Props = {
@@ -31,7 +30,7 @@ type OptionCardProps = {
   onClick: () => void;
 };
 
-function OptionCard({ index, emoji, label, description, onClick }: OptionCardProps) {
+function OptionCard({ index, label, description, onClick }: OptionCardProps) {
   return (
     <motion.button
       initial={{ opacity: 0, y: 20 }}
@@ -41,11 +40,14 @@ function OptionCard({ index, emoji, label, description, onClick }: OptionCardPro
       whileTap={{ scale: 0.98 }}
       onMouseEnter={playHover}
       onClick={() => { onClick(); playClick(); }}
-      className="flex flex-col items-center gap-2 rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6 text-center shadow-lg transition-colors hover:border-[var(--accent)]"
+      style={{ boxShadow: "var(--shadow-sm)" }}
+      className="flex flex-col items-center gap-1 sm:gap-2 border-2 border-[var(--border)] bg-[var(--surface)] p-4 sm:p-6 text-center transition-colors hover:border-[var(--fg)]"
     >
-      <EmojiIcon emoji={emoji} size={32} />
-      <span className="font-bold text-[var(--fg)]">{label}</span>
-      <span className="text-xs text-[var(--fg-muted)]">{description}</span>
+      <div className="mb-1 flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center border-2 border-[var(--fg)] font-[family-name:var(--font-display)] text-sm sm:text-base font-bold text-[var(--fg)] mx-auto">
+        {label.charAt(0).toUpperCase()}
+      </div>
+      <span className="font-[family-name:var(--font-display)] font-bold text-[var(--fg)]">{label}</span>
+      <span className="font-[family-name:var(--font-body)] text-xs text-[var(--fg-muted)]">{description}</span>
     </motion.button>
   );
 }
@@ -55,16 +57,20 @@ export default function StudyMenu({ dict, onStart }: Props) {
   const [choosingType, setChoosingType] = useState(false);
 
   return (
-    <main className="flex-1 px-4 py-10 sm:px-6">
-      <div className="mx-auto max-w-2xl">
+    <main className="flex flex-1 flex-col overflow-y-auto px-4 py-6 sm:py-10 sm:px-6">
+      <div className="w-full max-w-2xl m-auto">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
           className="mb-8 text-center"
         >
-          <h1 className="mb-2 text-2xl font-extrabold text-[var(--fg)] sm:text-3xl">{d.studyTitle}</h1>
-          <p className="mx-auto max-w-lg text-sm text-[var(--fg-muted)]">{d.studySubtitle}</p>
+          <h1 className="mb-2 font-[family-name:var(--font-display)] tracking-tight leading-none text-2xl font-extrabold text-[var(--fg)] sm:text-4xl">
+            {d.studyTitle}
+          </h1>
+          <p className="mx-auto max-w-lg font-[family-name:var(--font-body)] text-sm text-[var(--fg-muted)]">
+            {d.studySubtitle}
+          </p>
         </motion.div>
 
         <AnimatePresence mode="wait">
@@ -75,7 +81,7 @@ export default function StudyMenu({ dict, onStart }: Props) {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
               transition={{ duration: 0.2 }}
-              className="grid grid-cols-1 gap-4 sm:grid-cols-3"
+              className="grid grid-cols-1 gap-[2px] sm:grid-cols-3"
             >
               {MODES.map((m, i) => (
                 <OptionCard
@@ -106,12 +112,12 @@ export default function StudyMenu({ dict, onStart }: Props) {
               <button
                 onMouseEnter={playHover}
                 onClick={() => { setChoosingType(false); playClick(); }}
-                className="mb-4 flex items-center gap-1.5 text-sm font-medium text-[var(--fg-muted)] hover:text-[var(--accent)] transition-colors"
+                className="mb-4 flex items-center gap-1.5 font-[family-name:var(--font-body)] text-xs uppercase tracking-[0.1em] font-medium text-[var(--fg-muted)] hover:text-[var(--accent)] transition-colors"
               >
                 <ArrowLeft size={15} />
                 {d.back}
               </button>
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+              <div className="grid grid-cols-1 gap-[2px] sm:grid-cols-3">
                 {TYPES.map((t, i) => (
                   <OptionCard
                     key={t.type}
