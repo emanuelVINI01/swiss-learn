@@ -75,9 +75,10 @@ export default function Navbar({ lang, nav, langDict, themeDict, soundDict }: Pr
       transition={{ duration: 0.4 }}
       className="sticky top-0 z-50"
     >
-      <div className="glass border-b border-[var(--border)]">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
-          <Logo href={`/${lang}`} size={32} />
+      {/* No glass, no backdrop-blur — structural border */}
+      <div className="bg-[var(--surface)] border-b-2 border-[var(--border)]">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-2 sm:px-6 py-3">
+          <Logo href={`/${lang}`} size={24} textSize="text-sm sm:text-lg" />
 
           {/* Desktop nav */}
           <nav className="hidden items-center gap-6 md:flex">
@@ -87,8 +88,10 @@ export default function Navbar({ lang, nav, langDict, themeDict, soundDict }: Pr
                 href={l.href}
                 onMouseEnter={playHover}
                 onClick={playClick}
-                className={`text-sm font-medium transition-colors hover:text-[var(--accent)] ${
-                  pathname === l.href ? "text-[var(--accent)]" : "text-[var(--fg-muted)]"
+                className={`font-[family-name:var(--font-body)] text-xs uppercase tracking-[0.1em] font-medium transition-colors hover:text-[var(--accent)] border-b-2 pb-0.5 ${
+                  pathname === l.href
+                    ? "text-[var(--fg)] border-[var(--fg)]"
+                    : "text-[var(--fg-muted)] border-transparent"
                 }`}
               >
                 {l.label}
@@ -97,13 +100,13 @@ export default function Navbar({ lang, nav, langDict, themeDict, soundDict }: Pr
           </nav>
 
           {/* Right actions */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1 sm:gap-2">
             {/* Lang switcher */}
             <div className="relative">
               <button
                 onMouseEnter={playHover}
                 onClick={() => { setLangOpen((o) => !o); playClick(); }}
-                className="flex h-8 w-8 items-center justify-center rounded-lg hover:bg-[var(--surface-2)] transition-colors"
+                className="flex h-8 w-8 items-center justify-center hover:bg-[var(--surface-2)] transition-colors"
                 aria-label={langDict.switch}
               >
                 <Flag code={LOCALE_FLAG[lang] ?? "us"} size={18} />
@@ -115,7 +118,8 @@ export default function Navbar({ lang, nav, langDict, themeDict, soundDict }: Pr
                     animate={{ opacity: 1, scale: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.95, y: -8 }}
                     transition={{ duration: 0.15 }}
-                    className="absolute right-0 top-10 w-max min-w-[140px] rounded-xl border border-[var(--border)] bg-[var(--surface)] shadow-xl p-1 z-50"
+                    className="absolute right-0 top-10 w-max min-w-[140px] border-2 border-[var(--border)] bg-[var(--surface)] p-1 z-50"
+                    style={{ boxShadow: "var(--shadow-md)" }}
                   >
                     {LOCALES.map((locale) => (
                       <Link
@@ -123,7 +127,7 @@ export default function Navbar({ lang, nav, langDict, themeDict, soundDict }: Pr
                         href={switchLang(locale)}
                         onMouseEnter={playHover}
                         onClick={() => { setLangOpen(false); playClick(); }}
-                        className={`flex w-full whitespace-nowrap items-center gap-2 rounded-lg px-3 py-2 text-sm transition-colors hover:bg-[var(--accent-muted)] ${
+                        className={`flex w-full whitespace-nowrap items-center gap-2 px-3 py-2 font-[family-name:var(--font-body)] text-sm transition-colors hover:bg-[var(--accent-muted)] ${
                           locale === lang ? "text-[var(--accent)] font-semibold" : "text-[var(--fg-muted)]"
                         }`}
                       >
@@ -140,7 +144,7 @@ export default function Navbar({ lang, nav, langDict, themeDict, soundDict }: Pr
             <button
               onMouseEnter={playHover}
               onClick={() => { toggleTheme(); playClick(); }}
-              className="flex h-8 w-8 items-center justify-center rounded-lg hover:bg-[var(--surface-2)] text-[var(--fg-muted)] transition-colors"
+              className="flex h-8 w-8 items-center justify-center hover:bg-[var(--surface-2)] text-[var(--fg-muted)] transition-colors"
               aria-label={themeDict.toggle}
             >
               <AnimatePresence mode="wait" initial={false}>
@@ -164,12 +168,12 @@ export default function Navbar({ lang, nav, langDict, themeDict, soundDict }: Pr
                 <img
                   src={session.user?.image ?? ""}
                   alt={session.user?.name ?? ""}
-                  className="h-8 w-8 rounded-full object-cover border border-[var(--border)]"
+                  className="h-8 w-8 rounded-none object-cover border border-[var(--border)]"
                 />
                 <button
                   onMouseEnter={playHover}
                   onClick={() => { signOut(); playClick(); }}
-                  className="hidden text-sm font-medium text-[var(--fg-muted)] hover:text-[var(--error)] transition-colors md:block"
+                  className="hidden font-[family-name:var(--font-body)] text-sm font-medium text-[var(--fg-muted)] hover:text-[var(--error)] transition-colors md:block"
                 >
                   {nav.signout}
                 </button>
@@ -177,7 +181,7 @@ export default function Navbar({ lang, nav, langDict, themeDict, soundDict }: Pr
                   onMouseEnter={playHover}
                   onClick={() => { signOut(); playClick(); }}
                   aria-label={nav.signout}
-                  className="flex h-8 w-8 items-center justify-center rounded-lg hover:bg-[var(--error-muted)] text-[var(--fg-muted)] hover:text-[var(--error)] transition-colors md:hidden"
+                  className="flex h-8 w-8 items-center justify-center hover:bg-[var(--error-muted)] text-[var(--fg-muted)] hover:text-[var(--error)] transition-colors md:hidden"
                 >
                   <LogOut size={16} />
                 </button>
@@ -187,7 +191,7 @@ export default function Navbar({ lang, nav, langDict, themeDict, soundDict }: Pr
                 href={`/${lang}/signin`}
                 onMouseEnter={playHover}
                 onClick={playClick}
-                className="rounded-lg bg-[var(--accent)] px-3 py-1.5 text-sm font-semibold text-white hover:bg-[var(--accent-hover)] transition-colors"
+                className="border-2 border-[var(--accent)] bg-[var(--accent)] px-3 py-1.5 font-[family-name:var(--font-body)] text-sm font-bold text-white hover:bg-transparent hover:text-[var(--accent)] transition-colors duration-100"
               >
                 {nav.signin}
               </Link>

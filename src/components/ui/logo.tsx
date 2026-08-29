@@ -31,7 +31,7 @@ export function Logo({
   const content = (
     <span className="flex items-center gap-2">
       <SwissCrossMark size={size} />
-      <span className={`font-bold text-[var(--fg)] ${textSize}`}>
+      <span className={`font-bold text-[var(--fg)] ${textSize} whitespace-nowrap`}>
         Swiss<span className="text-[var(--accent)]">Learn</span>
       </span>
     </span>
