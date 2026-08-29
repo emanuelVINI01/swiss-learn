@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import { Sparkles } from "lucide-react";
-import { EmojiIcon } from "@/components/ui/emoji-icon";
 
 export type SkillStats = {
   level: number;
@@ -33,16 +32,16 @@ export default function SkillsSection({ dict, skills }: Props) {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.4, duration: 0.4 }}
-      className="mb-8"
+      className="mb-4 sm:mb-8"
     >
-      <div className="mb-4 flex items-center gap-2">
+      <div className="mb-2 flex items-center gap-2 sm:mb-4">
         <Sparkles size={16} className="text-[var(--fg-muted)]" />
-        <p className="text-sm font-semibold uppercase tracking-wider text-[var(--fg-muted)]">
+        <p className="font-[family-name:var(--font-body)] text-xs font-medium uppercase tracking-[0.12em] text-[var(--fg-muted)]">
           {d.skills}
         </p>
       </div>
 
-      <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+      <div className="grid grid-cols-3 gap-[2px]">
         {SKILLS.map((skill, i) => {
           const stats = skills[skill.id];
           return (
@@ -51,21 +50,27 @@ export default function SkillsSection({ dict, skills }: Props) {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.45 + i * 0.08, duration: 0.4 }}
-              className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-4"
+              className="border-2 border-[var(--border)] bg-[var(--surface)] p-2 hover:border-[var(--fg)] transition-colors sm:p-5"
+              style={{ boxShadow: "var(--shadow-sm)" }}
             >
-              <div className="mb-3 flex items-center gap-2">
-                <EmojiIcon emoji={skill.emoji} size={22} />
-                <span className="text-sm font-bold text-[var(--fg)]">{d[skill.labelKey]}</span>
+              {/* Square letter indicator — replaces emoji */}
+              <div className="mb-1.5 flex h-6 w-6 items-center justify-center border-2 border-[var(--fg)] font-[family-name:var(--font-display)] text-xs font-bold text-[var(--fg)] sm:mb-3 sm:h-8 sm:w-8">
+                {skill.id.charAt(0).toUpperCase()}
               </div>
-              <p className="text-2xl font-extrabold text-[var(--fg)]">
+              <span className="font-[family-name:var(--font-display)] font-bold text-xs text-[var(--fg)] sm:text-sm">
+                {d[skill.labelKey]}
+              </span>
+              <p className="font-[family-name:var(--font-display)] tracking-tight text-base font-extrabold text-[var(--fg)] mt-1 sm:text-2xl">
                 {d.level} {stats.level}
               </p>
               {stats.answered > 0 ? (
-                <p className="mt-0.5 text-xs text-[var(--fg-muted)]">
+                <p className="mt-0.5 font-[family-name:var(--font-body)] text-[10px] text-[var(--fg-muted)] sm:text-xs">
                   {stats.accuracy}% · {stats.correct}/{stats.answered} {d.skillAnswered}
                 </p>
               ) : (
-                <p className="mt-0.5 text-xs text-[var(--fg-muted)]">{d.skillNoData}</p>
+                <p className="mt-0.5 font-[family-name:var(--font-body)] text-[10px] text-[var(--fg-muted)] sm:text-xs">
+                  {d.skillNoData}
+                </p>
               )}
             </motion.div>
           );

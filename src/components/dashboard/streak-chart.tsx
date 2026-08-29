@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Flame } from "lucide-react";
 
@@ -34,18 +34,45 @@ function cellStyle(count: number): React.CSSProperties {
 // Weekday label rows shown on the left, GitHub-style (only every other one).
 const WEEKDAY_LABEL_ROWS = [1, 3, 5];
 
+// Pixel sizes mirrored from the classNames below (day cell, column/row gap,
+// weekday-label column) — used to work out how many weeks fit on mobile.
+const CELL = 12;
+const GAP = 4;
+const WEEKDAY_COL = 24 + GAP;
+
 export default function StreakChart({ dict, lang, days, streak }: Props) {
   const d = dict.dashboard;
   const scrollRef = useRef<HTMLDivElement>(null);
+  // Number of weeks that fit without horizontal scrolling on mobile; null
+  // means "no limit" (desktop, or not measured yet).
+  const [mobileWeeks, setMobileWeeks] = useState<number | null>(null);
 
-  // The grid is wider than the viewport on mobile; open it scrolled to the
-  // most recent days (right edge) instead of the oldest ones.
-  useEffect(() => {
+  // Mobile has no horizontal scroll for this chart, so only as many weeks as
+  // actually fit the available width get rendered (most recent first).
+  useLayoutEffect(() => {
     const el = scrollRef.current;
-    if (el) el.scrollLeft = el.scrollWidth;
-  }, [days]);
+    if (!el) return;
 
-  const weeks = useMemo<(StreakDay | null)[][]>(() => {
+    function measure() {
+      if (!window.matchMedia("(max-width: 639px)").matches) {
+        setMobileWeeks(null);
+        return;
+      }
+      const usable = el!.clientWidth - WEEKDAY_COL;
+      setMobileWeeks(Math.max(4, Math.floor((usable + GAP) / (CELL + GAP))));
+    }
+
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(el);
+    window.addEventListener("resize", measure);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener("resize", measure);
+    };
+  }, []);
+
+  const allWeeks = useMemo<(StreakDay | null)[][]>(() => {
     if (days.length === 0) return [];
     const leadingEmpty = new Date(`${days[0].date}T00:00:00`).getDay();
     const cells: (StreakDay | null)[] = [...Array.from({ length: leadingEmpty }, () => null), ...days];
@@ -55,6 +82,18 @@ export default function StreakChart({ dict, lang, days, streak }: Props) {
     for (let i = 0; i < cells.length; i += 7) result.push(cells.slice(i, i + 7));
     return result;
   }, [days]);
+
+  const weeks = useMemo(
+    () => (mobileWeeks != null ? allWeeks.slice(-mobileWeeks) : allWeeks),
+    [allWeeks, mobileWeeks]
+  );
+
+  // The grid can still be wider than the container on desktop; open it
+  // scrolled to the most recent days (right edge) instead of the oldest ones.
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (el) el.scrollLeft = el.scrollWidth;
+  }, [weeks]);
 
   const monthLabels = useMemo(() => {
     const formatter = new Intl.DateTimeFormat(lang, { month: "short" });
@@ -81,21 +120,21 @@ export default function StreakChart({ dict, lang, days, streak }: Props) {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.42, duration: 0.4 }}
-      className="mb-8 rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5"
+      className="mb-4 border-2 border-[var(--border)] bg-[var(--surface)] p-3 sm:mb-8 sm:p-5"
     >
-      <div className="mb-4 flex items-center justify-between">
+      <div className="mb-3 flex items-center justify-between sm:mb-4">
         <div className="flex items-center gap-2">
           <Flame size={18} className="text-[var(--swiss-red)]" />
-          <span className="font-bold text-[var(--fg)]">
+          <span className="font-[family-name:var(--font-display)] font-bold text-[var(--fg)]">
             {streak} {d.streakDays}
           </span>
         </div>
-        <p className="text-sm font-semibold uppercase tracking-wider text-[var(--fg-muted)]">
+        <p className="font-[family-name:var(--font-body)] text-xs font-medium uppercase tracking-[0.12em] text-[var(--fg-muted)]">
           {d.streakChart}
         </p>
       </div>
 
-      <div ref={scrollRef} className="overflow-x-auto">
+      <div ref={scrollRef} className="overflow-x-hidden sm:overflow-x-auto">
         <div className="inline-flex flex-col gap-1">
           <div className="flex gap-1 pl-7">
             {weeks.map((_, i) => (
@@ -121,7 +160,7 @@ export default function StreakChart({ dict, lang, days, streak }: Props) {
                       title={`${day.count} ${d.streakActivities} · ${new Date(
                         `${day.date}T00:00:00`
                       ).toLocaleDateString(lang)}`}
-                      className="h-3 w-3 rounded-sm"
+                      className="h-3 w-3"
                       style={cellStyle(day.count)}
                     />
                   ) : (
@@ -139,7 +178,7 @@ export default function StreakChart({ dict, lang, days, streak }: Props) {
         {LEVEL_OPACITY.map((opacity, i) => (
           <div
             key={i}
-            className="h-3 w-3 rounded-sm"
+            className="h-3 w-3"
             style={
               opacity === 0
                 ? { backgroundColor: "var(--bg-secondary)" }

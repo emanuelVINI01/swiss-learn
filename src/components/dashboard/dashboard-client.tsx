@@ -73,54 +73,52 @@ export default function DashboardClient({
       Icon: Zap,
       label: dict.dashboard.xp,
       value: progress.xp,
-      bg: "var(--accent-muted)",
       color: "var(--accent)",
     },
     {
       Icon: Flame,
       label: dict.dashboard.streak,
       value: `${progress.streak}`,
-      bg: "rgba(249, 115, 22, 0.12)",
-      color: "#f97316",
+      color: "#B5520A",
     },
     {
       Icon: Target,
       label: dict.dashboard.accuracy,
       value: `${stats.accuracy}%`,
-      bg: "var(--success-muted)",
       color: "var(--success)",
     },
     {
       Icon: BookOpen,
       label: dict.dashboard.totalQuizzes,
       value: stats.totalQuizzes,
-      bg: "var(--swiss-red-muted)",
       color: "var(--swiss-red)",
     },
   ];
 
   return (
     <AppShell lang={lang} dict={dict}>
-      <main className="flex-1 px-4 py-8 sm:px-6">
+      <main className="flex-1 overflow-hidden px-4 py-4 sm:px-6 sm:py-8">
         <div className="mx-auto max-w-5xl">
           {/* Welcome header */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
-            className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between"
+            className="mb-4 flex flex-col gap-3 sm:mb-8 sm:flex-row sm:items-center sm:justify-between sm:gap-4"
           >
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-3 sm:gap-4">
               {user.image && (
                 <img
                   src={user.image}
                   alt={user.name ?? ""}
-                  className="h-14 w-14 rounded-2xl object-cover border-2 border-[var(--border)]"
+                  className="h-10 w-10 rounded-sm object-cover border-2 border-[var(--border)] sm:h-14 sm:w-14"
                 />
               )}
               <div>
-                <p className="text-sm text-[var(--fg-muted)]">{d.welcome},</p>
-                <h1 className="text-2xl font-extrabold text-[var(--fg)]">
+                <p className="font-[family-name:var(--font-body)] text-xs text-[var(--fg-muted)] sm:text-sm">
+                  {d.welcome},
+                </p>
+                <h1 className="font-[family-name:var(--font-display)] text-lg font-extrabold tracking-tight text-[var(--fg)] sm:text-2xl">
                   {user.name ?? user.email?.split("@")[0]}
                 </h1>
               </div>
@@ -132,7 +130,7 @@ export default function DashboardClient({
                 whileTap={{ scale: 0.98 }}
                 onMouseEnter={playHover}
                 onClick={handleShare}
-                className="flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--surface)] px-4 py-3 text-sm font-semibold text-[var(--fg-muted)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition-all"
+                className="flex items-center gap-2 border-2 border-[var(--border)] bg-[var(--surface)] px-3 py-2 text-sm font-semibold text-[var(--fg-muted)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors duration-100 font-[family-name:var(--font-body)] sm:px-4 sm:py-3"
               >
                 <AnimatePresence mode="wait" initial={false}>
                   {copied ? (
@@ -164,7 +162,7 @@ export default function DashboardClient({
               <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                 <Link
                   href={`/${lang}/questions`}
-                  className="group inline-flex items-center gap-2 rounded-xl bg-[var(--accent)] px-5 py-3 text-sm font-bold text-white hover:bg-[var(--accent-hover)] transition-all shadow-lg"
+                  className="group inline-flex items-center gap-2 border-2 border-[var(--accent)] bg-[var(--accent)] px-4 py-2 text-sm font-bold text-white hover:bg-transparent hover:text-[var(--accent)] transition-colors duration-100 font-[family-name:var(--font-display)] sm:px-5 sm:py-3"
                 >
                   <BookOpen size={18} />
                   {d.startPractice}
@@ -174,15 +172,12 @@ export default function DashboardClient({
             </div>
           </motion.div>
 
-          {/* Language selector */}
-          
-
           {/* Stat cards */}
-          <div className="mb-8">
-            <p className="mb-4 text-sm font-semibold uppercase tracking-wider text-[var(--fg-muted)]">
+          <div className="mb-4 sm:mb-8">
+            <p className="mb-2 font-[family-name:var(--font-body)] text-xs uppercase tracking-[0.12em] text-[var(--fg-muted)] sm:mb-4">
               {d.stats}
             </p>
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+            <div className="grid grid-cols-2 gap-[2px] sm:grid-cols-4">
               {statCards.map((card, i) => (
                 <motion.div
                   key={card.label}
@@ -191,16 +186,17 @@ export default function DashboardClient({
                   initial="hidden"
                   animate="visible"
                   whileHover={{ y: -2, transition: { duration: 0.15 } }}
-                  className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-4 transition-colors hover:border-[var(--accent)]"
+                  className="border-2 border-[var(--border)] bg-[var(--surface)] p-3 shadow-offset-sm transition-colors hover:border-[var(--fg)] sm:p-4"
                 >
-                  <div
-                    className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl"
-                    style={{ backgroundColor: card.bg }}
-                  >
-                    <card.Icon size={20} style={{ color: card.color }} />
+                  <div className="mb-1.5 sm:mb-3">
+                    <card.Icon size={18} style={{ color: card.color }} />
                   </div>
-                  <p className="text-2xl font-extrabold text-[var(--fg)]">{card.value}</p>
-                  <p className="text-xs text-[var(--fg-muted)] mt-0.5">{card.label}</p>
+                  <p className="font-[family-name:var(--font-display)] text-lg font-extrabold tracking-tight text-[var(--fg)] sm:text-2xl">
+                    {card.value}
+                  </p>
+                  <p className="font-[family-name:var(--font-body)] text-xs text-[var(--fg-muted)] mt-0.5">
+                    {card.label}
+                  </p>
                 </motion.div>
               ))}
             </div>
@@ -211,24 +207,26 @@ export default function DashboardClient({
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.35, duration: 0.4 }}
-            className="mb-8 rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5"
+            className="mb-4 border border-[var(--border)] bg-[var(--surface)] p-3 sm:mb-8 sm:p-5"
+            style={{ borderRadius: 0 }}
           >
-            <div className="mb-3 flex items-center justify-between">
+            <div className="mb-2 flex items-center justify-between sm:mb-3">
               <div className="flex items-center gap-2">
                 <EmojiIcon emoji="🏆" size={18} />
-                <span className="font-bold text-[var(--fg)]">{d.level} {Math.floor(progress.xp / 100) + 1}</span>
+                <span className="font-[family-name:var(--font-display)] font-extrabold text-[var(--fg)]">
+                  {d.level} {Math.floor(progress.xp / 100) + 1}
+                </span>
               </div>
-              <span className="text-sm text-[var(--fg-muted)]">
+              <span className="font-[family-name:var(--font-body)] text-sm text-[var(--fg-muted)]">
                 {progress.xp % 100} / 100 XP
               </span>
             </div>
-            <div className="h-3 w-full overflow-hidden rounded-full bg-[var(--bg-secondary)]">
+            <div className="h-[3px] w-full overflow-hidden bg-[var(--bg-secondary)]">
               <motion.div
                 initial={{ width: 0 }}
                 animate={{ width: `${progress.xp % 100}%` }}
                 transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-                className="h-full rounded-full"
-                style={{ background: "linear-gradient(90deg, var(--accent), var(--swiss-red))" }}
+                className="h-full bg-[var(--accent)]"
               />
             </div>
           </motion.div>
@@ -239,7 +237,7 @@ export default function DashboardClient({
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.45 }}
-              className="flex items-center gap-2 text-sm text-[var(--fg-muted)]"
+              className="mb-3 flex items-center gap-2 font-[family-name:var(--font-body)] text-xs text-[var(--fg-muted)] sm:mb-0 sm:text-sm"
             >
               <Calendar size={14} />
               {d.lastStudy}: {new Date(progress.lastStudy).toLocaleDateString(lang)}
@@ -258,13 +256,16 @@ export default function DashboardClient({
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}
-              className="mt-6 rounded-2xl border border-dashed border-[var(--border)] p-8 text-center"
+              className="mt-6 border border-dashed border-[var(--border)] p-8 text-center"
+              style={{ borderRadius: 0 }}
             >
               <EmojiIcon emoji="📚" size={40} className="mx-auto mb-3" />
-              <p className="mb-4 text-[var(--fg-muted)]">{d.noProgress}</p>
+              <p className="mb-4 font-[family-name:var(--font-body)] text-[var(--fg-muted)]">
+                {d.noProgress}
+              </p>
               <Link
                 href={`/${lang}/questions`}
-                className="inline-flex items-center gap-2 rounded-xl bg-[var(--accent)] px-5 py-2.5 text-sm font-bold text-white hover:bg-[var(--accent-hover)] transition-all"
+                className="inline-flex items-center gap-2 border-2 border-[var(--accent)] bg-[var(--accent)] px-5 py-3 text-sm font-bold text-white hover:bg-transparent hover:text-[var(--accent)] transition-colors duration-100"
               >
                 {d.startPractice}
                 <ArrowRight size={16} />

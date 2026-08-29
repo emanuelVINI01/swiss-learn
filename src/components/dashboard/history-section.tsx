@@ -29,9 +29,9 @@ export default function HistorySection({ dict, lang, history }: Props) {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.5, duration: 0.4 }}
-      className="mb-8"
+      className="mb-4 sm:mb-8"
     >
-      <div className="mb-4 flex items-center gap-2">
+      <div className="mb-3 flex items-center gap-2 sm:mb-4">
         <Clock size={16} className="text-[var(--fg-muted)]" />
         <p className="text-sm font-semibold uppercase tracking-wider text-[var(--fg-muted)]">
           {d.history}
@@ -43,13 +43,12 @@ export default function HistorySection({ dict, lang, history }: Props) {
           {d.noHistory}
         </div>
       ) : (
-        <div className="overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface)]">
+        <div className="max-h-[38vh] overflow-y-auto rounded-2xl border border-[var(--border)] bg-[var(--surface)] sm:max-h-none">
           {history.map((entry, i) => (
             <div
               key={entry.id}
-              className={`flex items-center justify-between gap-3 px-4 py-3 ${
-                i !== history.length - 1 ? "border-b border-[var(--border)]" : ""
-              }`}
+              className={`flex items-center justify-between gap-3 px-4 py-3 ${i !== history.length - 1 ? "border-b border-[var(--border)]" : ""
+                }`}
             >
               <div className="flex items-center gap-3">
                 <Flag code={(LOCALE_FLAG[entry.targetLang] ?? "us") as FlagCode} size={20} />
