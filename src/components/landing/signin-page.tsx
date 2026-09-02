@@ -14,9 +14,10 @@ import { EmojiIcon } from "@/components/ui/emoji-icon";
 type Props = {
   dict: any;
   lang: string;
+  callbackUrl?: string;
 };
 
-export default function SigninPageClient({ dict, lang }: Props) {
+export default function SigninPageClient({ dict, lang, callbackUrl }: Props) {
   const d = dict;
   const { theme, toggleTheme } = useTheme();
 
@@ -80,7 +81,7 @@ export default function SigninPageClient({ dict, lang }: Props) {
               <motion.button
                 whileHover={{ scale: 1.01 }}
                 whileTap={{ scale: 0.98 }}
-                onClick={() => signIn("github", { callbackUrl: `/${lang}/dashboard` })}
+                onClick={() => signIn("github", { callbackUrl: callbackUrl ?? `/${lang}/dashboard` })}
                 className="flex w-full items-center justify-center gap-3 rounded-xl border border-[var(--border)] bg-[var(--surface-2)] px-4 py-3 text-sm font-semibold text-[var(--fg)] transition-all hover:border-[var(--accent)] hover:bg-[var(--accent-muted)]"
               >
                 <SiGithub size={18} />
